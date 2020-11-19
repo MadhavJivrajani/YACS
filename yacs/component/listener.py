@@ -30,4 +30,4 @@ class Listener(threading.Thread):
 				break
 			data = data.decode("utf-8")
 			self.recv_json = json.loads(data)
-			print(self.__name, self.recv_json)
+		self.shutdown_flag.set()

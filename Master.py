@@ -29,20 +29,6 @@ class Master:
 			signal.SIGINT	: handle_thread_terminate,
 		})
 
-				
-		# TODO: log
-		try:
-			job_listener = self.__spawn(self.__spawn_job_listener, args=(5000,))
-			update_listener = self.__spawn(self.__spawn_update_listener, args=(5001,))
-		
-		# TODO: log
-		except ThreadTerminate:
-			for listener in self.__update_listeners + self.__job_listeners:
-				listener.shutdown_flag.set()
-			
-			job_listener.join()
-			update_listener.join()		
-
 	def get_sched_polices(self) -> List[str]:
 		return self.__sched_policies
 	
@@ -58,7 +44,25 @@ class Master:
 	def set_master_ip(self, ip: str = "127.0.0.1") -> object:
 		self.master_ip = ip
 		return self
-	
+
+	def start(self) -> None:
+		# TODO: log
+		try:
+			job_listener = self.__spawn(self.__spawn_job_listener, args=(5000,))
+			update_listener = self.__spawn(self.__spawn_update_listener, args=(5001,))
+
+		# TODO: log
+		except ThreadTerminate:
+			job_listeners = list(self.__job_listeners.values())
+			update_listeners = list(self.__update_listeners.values())
+
+			for listener in job_listeners + update_listeners:
+				if not listener.shutdown_flag.is_set():
+					listener.shutdown_flag.set()
+			
+			job_listener.join()
+			update_listener.join()
+
 	def __spawn(self, func, args) -> threading.Thread:
 		thread = threading.Thread(target=func, args=args)
 		thread.start()
@@ -97,6 +101,7 @@ if __name__ == '__main__':
 		m = Master()\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)
+		m.start()
 		
 	except Exception as e:
 		print(e)
