@@ -63,6 +63,9 @@ class Master:
 			job_listener.join()
 			update_listener.join()
 
+	def __send_msg(self, addr, listeners) -> None:
+		listeners[addr].ack_flag.set()
+
 	def __spawn(self, func, args) -> threading.Thread:
 		thread = threading.Thread(target=func, args=args)
 		thread.start()
