@@ -1,32 +1,45 @@
 import json
 
-requests = {'job_id': '0', 'map_tasks': [{'task_id': '0_M0', 'duration': 3}, {'task_id': '0_M1', 'duration': 2}], 'reduce_tasks': [{'task_id': '0_R0', 'duration': 1}, {'task_id': '0_R1', 'duration': 3}]}
+comp_req = {
+        'worker_id':1,
+        'data':{'map_tasks':['0_M1'],'reduce_tasks':[]},    #completed task IDs
+        }
 
+requests = {'job_id': '0', 'map_tasks': [{'task_id': '0_M0', 'duration': 3}, {'task_id': '0_M1', 'duration': 1},{'task_id': '0_M2','duration': 4}], 'reduce_tasks': [{'task_id': '0_R0', 'duration': 1}, {'task_id': '0_R1', 'duration': 3}]}
 
 #initialise all jobs and tasks to 0 before scheduling
 job_status = dict()
+job_status['total_map_tasks'] = len(requests['map_tasks'])
+job_status['map_done'] = 0
+job_status['total_reduce_tasks'] = len(requests['reduce_tasks'])
+job_status['red_done'] = 0
+
+tasks_left = [] 
+tasks_done = []
+
+#based on completion request
+tasks_done.extend(comp_req['data']['map_tasks'])
+tasks_done.extend(comp_req['data']['reduce_tasks'])
+job_status['map_done']+=len(comp_req['data']['map_tasks'])
+job_status['red_done']+=len(comp_req['data']['reduce_tasks'])
+
+print("Job status initially: ",job_status)
 
 curr=0
+#tasks_done.extend(comp_req['data'])
 
 for job in requests:
-    if job=='job_id':
-        job_status[requests['job_id']] = dict()
-        job_status[requests['job_id']]['map_tasks'] = dict()
-        job_status[requests['job_id']]['reduce_tasks'] = dict()
-        curr=requests['job_id']
-    
-    if job=='map_tasks':
-        for task in requests['map_tasks']:
-            job_status[curr]['map_tasks'][task['task_id']] = 0
-
-    if job=='reduce_tasks':
-        for task in requests['reduce_tasks']:
-            job_status[curr]['reduce_tasks'][task['task_id']] = 0
+    if job == 'map_tasks' or job=='reduce_tasks':
+        for x in requests[job]:
+            if x['task_id'] not in tasks_done:
+                tasks_left.append((x['task_id']))
 
 
 #print initial job buffer to see
-print(job_status)
-
+#print(job_status)
+print("tasks left: ",tasks_left)
+print("tasks completed: ",tasks_done)
+print("\n")
 
 #assume 3 workers for now, with random no. of slots. Ports not fixed here.
 workers = ['worker_0','worker_1','worker_2']
@@ -36,6 +49,7 @@ slots['worker_0'] = [x+1 for x in range(2)]
 slots['worker_1'] = [x+1 for x in range(1)]
 slots['worker_2'] = [x+1 for x in range(2)]
 
+#tasks being done by each worker
 worker_status = dict()
 worker_status['worker_0'] = []
 worker_status['worker_1'] = []
@@ -44,58 +58,52 @@ worker_status['worker_2'] = []
 for w in workers:
     worker_status[w] = []
 
-
 #Round robin scheduling
+def round_robin():
+    
+    for job in requests:
 
-#have a var/list to check if map tasks are completed before reduce tasks begin
-map_done = []
-red_done = []
+        for m in requests['map_tasks']:
+            if m['task_id'] in tasks_left:
 
-for job in job_status:
+                for w in workers:
+                    if(len(slots[w])==0):   #no empty slots
+                        continue
 
-    for m in job_status[job]['map_tasks']:
-        status = job_status[job]['map_tasks'][m]
-        if(status >=1 ):
-            continue    #already scheduled or completed
-        
-        #now check each worker for empty slots when status=0(yet to be scheduled)
-        n = len(workers)
-        for i in range(n):
+                    worker_status[w].append(slots[w][0])
+                    print(m['task_id']," ",w," slot:",slots[w][0])
+                    slots[w].pop(0)
+                    tasks_left.remove(m['task_id'])
 
-            w = workers[i]
-            if len(slots[w])>0:
-                job_status[job]['map_tasks'][m] = 1 #scheduled to the first empty slot
-                slot_no = slots[w][0]
-                slots[w].pop(0)
-                worker_status[w] = [job,m]
-                print("Job:",job," task:",m," worker:",w," slot no.:",slot_no)
-                break
-            
-            if(i==n-1):
-                i=0
-            
+                    #temporary - will increase it based on job completion requests from worker once added to master
+                    
+                    tasks_done.append(m['task_id'])
+                    slots[w].append(worker_status[w][-1])
+                    worker_status[w].pop()
+                    job_status['map_done']+=1
+                    break
+                     
 
-    #check dependency over here
-    #if len(map_done) = len(job_status[job]['map_tasks'])
+        if job_status['map_done'] == job_status['total_map_tasks']: #checking dependency
+            for r in requests['reduce_tasks']:
+                if r['task_id'] in tasks_left:
 
-    for r in job_status[job]['reduce_tasks']:
-        status = job_status[job]['reduce_tasks'][r]
-        if(status >=1 ):
-            continue    #already scheduled or completed
-        
-        #now check each worker for empty slots when status=0(yet to be scheduled)
-        n = len(workers)
-        for i in range(n):
+                    for w in workers:
+                        if(len(slots[w])==0):   #no empty slots
+                            continue
 
-            w = workers[i]
-            if len(slots[w])>0:
-                job_status[job]['reduce_tasks'][r] = 1 #scheduled
-                slot_no = slots[w][0]
-                slots[w].pop(0)
-                worker_status[w] = [job,r]
-                print("Job:",job," task:",r," worker:",w," slot no.:",slot_no)
-                break
-            
-            if(i==n-1):
-                i=0
+                        worker_status[w].append(slots[w][0])
+                        print(r['task_id']," ",w," slot:",slots[w][0])
+                        slots[w].pop(0)
+                        tasks_left.remove(r['task_id'])
+                        
+                        tasks_done.append(r['task_id'])
+                        slots[w].append(worker_status[w][-1])
+                        worker_status[w].pop()
+                        job_status['red_done']+=1
+                        break
 
+
+
+round_robin()
+print("\nJob status after scheduling: ",job_status)
