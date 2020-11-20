@@ -51,6 +51,9 @@ class Master:
 			job_listener = self.__spawn(self.__spawn_job_listener, args=(5000,))
 			update_listener = self.__spawn(self.__spawn_update_listener, args=(5001,))
 
+			job_listener.join()
+			update_listener.join()	
+
 		# TODO: log
 		except ThreadTerminate:
 			job_listeners = list(self.__job_listeners.values())
@@ -59,15 +62,14 @@ class Master:
 			for listener in job_listeners + update_listeners:
 				if not listener.shutdown_flag.is_set():
 					listener.shutdown_flag.set()
-			
-			job_listener.join()
-			update_listener.join()
+		
 
 	def __send_msg(self, addr, listeners) -> None:
 		listeners[addr].ack_flag.set()
 
 	def __spawn(self, func, args) -> threading.Thread:
 		thread = threading.Thread(target=func, args=args)
+		thread.daemon = True
 		thread.start()
 
 		return thread
@@ -80,6 +82,7 @@ class Master:
 			(client, client_addr) = job_socket.accept()
 			job_listener = Listener(client, client_addr, "JOB_LISTENER")
 			self.__job_listeners[client_addr] = job_listener
+			job_listener.daemon = True
 			job_listener.start()
 	
 	def __spawn_update_listener(self, port: int = 5001) -> None:
@@ -89,6 +92,7 @@ class Master:
 		while True:			
 			(worker, worker_addr) = update_socket.accept()
 			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER")
+			update_listener.daemon = True
 			self.__update_listeners[worker_addr] = update_listener
 			update_listener.start()
 	
