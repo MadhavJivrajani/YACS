@@ -1,1 +1,4 @@
 *.pyc
+test.json
+test_master.py
+test_worker.py

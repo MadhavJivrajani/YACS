@@ -7,6 +7,7 @@ from typing import List
 from queue import Queue
 
 from yacs.component.listener import Listener
+from yacs.component.scheduler import Scheduler
 from yacs.utils.errors import handle_thread_terminate, ThreadTerminate
 
 __all__ = ['Master']
@@ -33,8 +34,12 @@ class Master:
 		self.__job_queue = Queue()
 		self.__update_queue = Queue()
 
-		# poll frquency in ms
-		self.__poll_freq = 100
+		self.jobs = {}
+		self.tasks_pool = []
+		self.slots_free = {}
+
+		self.scheduler = Scheduler(self.sched_policy)
+		self.scheduler_lock = threading.Lock()
 
 	def get_sched_polices(self) -> List[str]:
 		return self.__sched_policies
@@ -42,6 +47,35 @@ class Master:
 	def config(self, path_to_config: str) -> object:
 		with open(path_to_config, "r") as conf:
 			self.worker_config = json.load(conf)
+
+		for worker_info in self.worker_config["workers"]:
+			worker_id = worker_info['worker_id']
+			slots = worker_info["slots"]
+			self.slots_free[worker_id] = slots
+
+		return self
+
+	def initialize_connection(self):
+
+		self.sender_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		for worker_info in self.worker_config["workers"]:
+
+			worker_id = worker_info['worker_id']
+			slots = worker_info["slots"]
+			port = worker_info["port"]
+
+			self.sender_socket.connect((self.master_ip, port))
+
+			data = {
+				'worker_slots_count': slots,
+				'worker_id': worker_id
+			}
+
+			json_data = json.dumps(data)
+			self.sender_socket.sendall(json_data)
+
+			self.sender_socket.close()
+
 		return self
 
 	def __poll_job_queue(self) -> None:
@@ -57,12 +91,10 @@ class Master:
 			#trigger scheduling 
 			print(update)
 			self.__update_queue.task_done()
-
-	def set_poll_frequency(self, freq: int=100) -> object:
-		self.__poll_freq = freq
 	
 	def set_sched_policy(self, sched_policy: str = "LL") -> object:
 		self.sched_policy = sched_policy
+		self.scheduler = Scheduler(self.sched_policy)
 		return self
 	
 	def set_master_ip(self, ip: str = "127.0.0.1") -> object:
@@ -104,12 +136,16 @@ class Master:
 		job_socket = socket.create_server((self.master_ip, port))
 		job_socket.listen(1)
 
-		while True:			
+		while True:
 			(client, client_addr) = job_socket.accept()
 			job_listener = Listener(client, client_addr, "JOB_LISTENER", self.__job_queue)
 			self.__job_listeners[client_addr] = job_listener
 			job_listener.daemon = True
-			job_listener.start()
+			data = job_listener.start()
+			with self.scheduler_lock:
+				pass
+				# self.jobs, self.tasks_pool, self.slots_free, tasks_to_be_schduled = \
+				# 	self.scheduler.schedule(self.worker_config, self.jobs, self.tasks_pool, self.slots_free, data, 'JOB_RECEIVED')
 	
 	def __spawn_update_listener(self, port: int = 5001) -> None:
 		update_socket = socket.create_server((self.master_ip, port))
@@ -120,7 +156,10 @@ class Master:
 			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER")
 			update_listener.daemon = True
 			self.__update_listeners[worker_addr] = update_listener
-			update_listener.start()
+			data = update_listener.start()
+
+			with self.scheduler_lock:
+				pass
 	
 	def __register_signal_handlers(self, handler_map: dict) -> None:
 		for sig, handler in handler_map.items():
@@ -134,8 +173,9 @@ if __name__ == '__main__':
 		m = Master()\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)
+			# .initialize_connection()
 		m.start()
-		
+
 	except Exception as e:
 		print(e)
 	# TODO: log this
