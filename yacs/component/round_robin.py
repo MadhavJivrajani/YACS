@@ -8,6 +8,14 @@ comp_req = {
 requests = {'job_id': '0', 'map_tasks': [{'task_id': '0_M0', 'duration': 3}, {'task_id': '0_M1', 'duration': 1},{'task_id': '0_M2','duration': 4}], 'reduce_tasks': [{'task_id': '0_R0', 'duration': 1}, {'task_id': '0_R1', 'duration': 3}]}
 
 #initialise all jobs and tasks to 0 before scheduling
+
+# {
+#     job_id: {
+#         total_map: 1,
+#         ksker: 1,
+#     }
+# }
+
 job_status = dict()
 job_status['total_map_tasks'] = len(requests['map_tasks'])
 job_status['map_done'] = 0

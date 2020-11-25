@@ -20,19 +20,24 @@ class Listener(threading.Thread):
 
 		self.recv_json = {}
 
-		self.shutdown_flag = threading.Event()
-		self.ack_flag = threading.Event()
+		# self.shutdown_flag = threading.Event()
+		# self.ack_flag = threading.Event()
 
 	# TODO: logging
 	def run(self) -> None:
-		while not self.shutdown_flag.is_set():
-			data = self.__client.recv(self.buff_size)
-			if self.ack_flag.is_set():
-				self.ack_flag.clear()
-				self.__client.send(b"ack-test")
-			if not data:
-				continue
-			data = data.decode("utf-8")
-			self.recv_json = json.loads(data)
-			print(self.recv_json)
-		self.shutdown_flag.set()
+		data = []
+		while True:
+			data_chunk = self.__client.recv(self.buff_size)
+			if not data_chunk:
+				break
+			data.append(data_chunk.decode("utf-8"))
+		
+		data = ''.join(data)
+		
+		# if self.ack_flag.is_set():
+		# 	self.ack_flag.clear()
+		# 	self.__client.send(b"ack-test")
+
+		self.recv_json = json.loads(data)
+		print(self.recv_json)
+		return self.recv_json

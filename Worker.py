@@ -36,11 +36,10 @@ class Worker:
 			data = ''
 			with connection:
 				while True:
-					received_data = connection.recv(1024).decode('utf-8')
-					if 'CLOSE' in received_data or not received_data:
-						connection.sendall('CLOSE CONFIRMED')
+					received_data = connection.recv(2048)
+					if not received_data:
 						break
-					data += received_data
+					data += received_data.decode('utf-8')
 
 			new_task = eval(data)
 
@@ -94,11 +93,10 @@ class Worker:
 		data = ''
 		with connection:
 			while True:
-				received_data = connection.recv(1024).decode('utf-8')
-				if 'CLOSE' in received_data or not received_data:
-					connection.sendall('CLOSE CONFIRMED')
+				received_data = connection.recv(2048)
+				if not received_data:
 					break
-				data += received_data
+				data += received_data.decode('utf-8')
 
 		data = eval(data)
 		self.slots = data['worker_slots_count']
