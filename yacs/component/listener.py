@@ -1,6 +1,7 @@
 import json
 import socket
 import threading
+import logging
 
 from queue import Queue
 
@@ -28,7 +29,9 @@ class Listener(threading.Thread):
 
 		self.__queue = queue
 
-	# TODO: logging
+		logging.info("connection to ip: %s port: %d successfully established" % \
+			(self.__client_addr[0], self.__client_addr[1]))		
+
 	def run(self) -> None:
 		data = []
 		while True:
@@ -36,13 +39,13 @@ class Listener(threading.Thread):
 			if not data_chunk:
 				break
 			data.append(data_chunk.decode("utf-8"))
-		
+
 		data = ''.join(data)
 		if self.ack_flag.is_set():
 			self.ack_flag.clear()
 			self.__client.send(b"ack-test")
 
 		self.recv_json = json.loads(data)
-		self.__queue.put(self.recv_json)
+		self.__queue.put((self.__client_addr, self.recv_json))
 
 		self.shutdown_flag.set()

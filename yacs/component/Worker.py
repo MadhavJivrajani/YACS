@@ -6,7 +6,6 @@ from copy import deepcopy
 from threading import Thread, Lock
 
 class Worker:
-
 	def __init__(self, PORT, HOST='127.0.0.1', MASTER_PORT=5001):
 
 		self.HOST = HOST

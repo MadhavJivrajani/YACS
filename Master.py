@@ -3,6 +3,7 @@ import json
 import threading
 import socket
 import signal
+import logging
 from typing import List
 from queue import Queue
 
@@ -17,6 +18,7 @@ class Master:
 		self.__sched_policies = ["LL", "RR", "R"]
 		self.sched_policy = "LL"
 
+		logging.info("scheduling policy set to %s" % self.sched_policy)
 		self.worker_config = dict()
 
 		# in case functionality for providing updates to clients is provided.
@@ -38,7 +40,7 @@ class Master:
 		self.tasks_pool = []
 		self.slots_free = {}
 
-		self.scheduler = Scheduler(self.sched_policy)
+		self.scheduler = Scheduler(self, self.sched_policy)
 		self.scheduler_lock = threading.Lock()
 
 	def get_sched_polices(self) -> List[str]:
@@ -56,7 +58,6 @@ class Master:
 		return self
 
 	def initialize_connection(self):
-
 		self.sender_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		for worker_info in self.worker_config["workers"]:
 
@@ -80,16 +81,17 @@ class Master:
 
 	def __poll_job_queue(self) -> None:
 		while True:
-			job = self.__job_queue.get()
-			# trigger scheduling
-			print(job)
+			client, job = self.__job_queue.get()
+			logging.info("scheduling job: %s recieved from ip: %s port: %d" \
+				% (job["job_id"], client[0], client[1]))
 			self.__job_queue.task_done()
 
 	def __poll_update_queue(self) -> None:
 		while True:
-			update = self.__update_queue.get()
-			#trigger scheduling 
-			print(update)
+			worker, update = self.__update_queue.get()
+			logging.info("received update from %s at ip: %s port: %d" \
+				% (update["worker_id"], worker[0], worker[1]))
+
 			self.__update_queue.task_done()
 	
 	def set_sched_policy(self, sched_policy: str = "LL") -> object:
@@ -102,19 +104,22 @@ class Master:
 		return self
 
 	def start(self) -> None:
-		# TODO: log
 		try:
 			job_listener = self.__spawn(self.__spawn_job_listener, args=(5000,))
+			logging.info("job listener spawn successful")
+
 			update_listener = self.__spawn(self.__spawn_update_listener, args=(5001,))
+			logging.info("update listener spawn successful")
 
 			job_queue_poll = self.__spawn(self.__poll_job_queue)
+			logging.info("job queue spawn successful")
 
 			job_listener.join()
 			update_listener.join()
 			job_queue_poll.join()
 
-		# TODO: log
 		except ThreadTerminate:
+			logging.info("shutting down listeners")
 			job_listeners = list(self.__job_listeners.values())
 			update_listeners = list(self.__update_listeners.values())
 
@@ -138,12 +143,14 @@ class Master:
 
 		while True:
 			(client, client_addr) = job_socket.accept()
+			logging.info("new incoming client connection, ip: %s port: %d" % (client_addr[0], client_addr[1]))
+
 			job_listener = Listener(client, client_addr, "JOB_LISTENER", self.__job_queue)
 			self.__job_listeners[client_addr] = job_listener
 			job_listener.daemon = True
-			data = job_listener.start()
-			with self.scheduler_lock:
-				pass
+			job_listener.start()
+			#with self.scheduler_lock:
+			#	pass
 				# self.jobs, self.tasks_pool, self.slots_free, tasks_to_be_schduled = \
 				# 	self.scheduler.schedule(self.worker_config, self.jobs, self.tasks_pool, self.slots_free, data, 'JOB_RECEIVED')
 	
@@ -153,10 +160,12 @@ class Master:
 
 		while True:			
 			(worker, worker_addr) = update_socket.accept()
+			logging.info("new incoming worker connection, ip: %s port: %d" % (worker_addr[0], worker_addr[1]))
+
 			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER")
 			update_listener.daemon = True
 			self.__update_listeners[worker_addr] = update_listener
-			data = update_listener.start()
+			update_listener.start()
 
 			with self.scheduler_lock:
 				pass
@@ -169,7 +178,12 @@ if __name__ == '__main__':
 	try:
 		path = sys.argv[1]
 		sched_policy = sys.argv[2]
-
+		logging.basicConfig(
+			filename="yacs.log",
+			format="%(levelname)s %(asctime)s: %(message)s",
+			datefmt="%m/%d/%Y %I:%M:%S %p",
+			level=logging.DEBUG,
+		)
 		m = Master()\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)
@@ -177,5 +191,4 @@ if __name__ == '__main__':
 		m.start()
 
 	except Exception as e:
-		print(e)
-	# TODO: log this
+		logging.error(e)
