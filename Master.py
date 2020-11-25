@@ -4,6 +4,7 @@ import threading
 import socket
 import signal
 from typing import List
+from queue import Queue
 
 from yacs.component.listener import Listener
 from yacs.utils.errors import handle_thread_terminate, ThreadTerminate
@@ -29,13 +30,36 @@ class Master:
 			signal.SIGINT	: handle_thread_terminate,
 		})
 
+		self.__job_queue = Queue()
+		self.__update_queue = Queue()
+
+		# poll frquency in ms
+		self.__poll_freq = 100
+
 	def get_sched_polices(self) -> List[str]:
 		return self.__sched_policies
-	
+
 	def config(self, path_to_config: str) -> object:
 		with open(path_to_config, "r") as conf:
 			self.worker_config = json.load(conf)
 		return self
+
+	def __poll_job_queue(self) -> None:
+		while True:
+			job = self.__job_queue.get()
+			# trigger scheduling
+			print(job)
+			self.__job_queue.task_done()
+
+	def __poll_update_queue(self) -> None:
+		while True:
+			update = self.__update_queue.get()
+			#trigger scheduling 
+			print(update)
+			self.__update_queue.task_done()
+
+	def set_poll_frequency(self, freq: int=100) -> object:
+		self.__poll_freq = freq
 	
 	def set_sched_policy(self, sched_policy: str = "LL") -> object:
 		self.sched_policy = sched_policy
@@ -51,8 +75,11 @@ class Master:
 			job_listener = self.__spawn(self.__spawn_job_listener, args=(5000,))
 			update_listener = self.__spawn(self.__spawn_update_listener, args=(5001,))
 
+			job_queue_poll = self.__spawn(self.__poll_job_queue)
+
 			job_listener.join()
-			update_listener.join()	
+			update_listener.join()
+			job_queue_poll.join()
 
 		# TODO: log
 		except ThreadTerminate:
@@ -62,12 +89,11 @@ class Master:
 			for listener in job_listeners + update_listeners:
 				if not listener.shutdown_flag.is_set():
 					listener.shutdown_flag.set()
-		
 
 	def __send_msg(self, addr, listeners) -> None:
 		listeners[addr].ack_flag.set()
 
-	def __spawn(self, func, args) -> threading.Thread:
+	def __spawn(self, func, args: tuple = ()) -> threading.Thread:
 		thread = threading.Thread(target=func, args=args)
 		thread.daemon = True
 		thread.start()
@@ -80,7 +106,7 @@ class Master:
 
 		while True:			
 			(client, client_addr) = job_socket.accept()
-			job_listener = Listener(client, client_addr, "JOB_LISTENER")
+			job_listener = Listener(client, client_addr, "JOB_LISTENER", self.__job_queue)
 			self.__job_listeners[client_addr] = job_listener
 			job_listener.daemon = True
 			job_listener.start()
