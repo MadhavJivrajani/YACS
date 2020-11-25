@@ -138,17 +138,15 @@ class LeastLoaded:
 
 class Scheduler:
 	def __init__(self, master: object, strategy: str = "LL") -> None:
-		# self.schedulers = {
-		# 	'LL': self.least_loaded,
-		# 	'RR': self.round_robin,
-		# 	'R': self.random,
-		# }
 
 		self.master = master		
 		self.strategy = strategy
 
-		self.__sched_class()
+		self.scheduler = self.__sched_class()
 
 	def __sched_class(self) -> object:
 		if self.strategy == "LL":
 			return LeastLoaded(self.master)
+
+	def schedule_tasks(self):
+		return self.scheduler.schedule_tasks()
