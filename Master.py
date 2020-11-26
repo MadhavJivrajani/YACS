@@ -256,8 +256,8 @@ if __name__ == '__main__':
 		sched_policy = sys.argv[2]
 		logging.basicConfig(
 			filename="yacs.log",
-			format="%(levelname)s %(asctime)s: %(message)s",
-			datefmt="%m/%d/%Y %I:%M:%S %p",
+			format="%(levelname)s %(asctime)s.%(msecs)03d: %(message)s",
+			datefmt="%m/%d/%Y %H:%M:%S",
 			level=logging.DEBUG,
 		)
 		m = Master()\
