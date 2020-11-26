@@ -8,6 +8,7 @@ from copy import deepcopy
 from queue import Queue
 from threading import Thread, Lock
 
+
 class Worker:
 	def __init__(self, PORT, worker_id: str, HOST='127.0.0.1', MASTER_PORT=5001):
 		self.HOST = HOST
@@ -20,12 +21,12 @@ class Worker:
 		self.__completed_pool = Queue()
 
 	def start_worker(self):
-		
-		listener_thread = Thread(target = self.listen_for_task_requests)
+
+		listener_thread = Thread(target=self.listen_for_task_requests)
 		listener_thread.daemon = True
-		task_thread = Thread(target = self.execute_tasks)
+		task_thread = Thread(target=self.execute_tasks)
 		task_thread.daemon = True
-		update_thread = Thread(target = self.send_completion_update)
+		update_thread = Thread(target=self.send_completion_update)
 		update_thread.daemon = True
 
 		listener_thread.start()
@@ -44,13 +45,14 @@ class Worker:
 			with connection:
 				while True:
 					received_data = connection.recv(2048)
-					#print(received_data)
+					# print(received_data)
 					if not received_data:
 						break
 					data += received_data.decode('utf-8')
 
 			new_task = eval(data)
-			logging.info("task recieved: %s of job: %s" % (new_task["task_id"], new_task["job_id"]))
+			logging.info("task recieved: %s of job: %s" %
+						 (new_task["task_id"], new_task["job_id"]))
 			with self.pool_edit_lock:
 				self.pool.append(new_task)
 
@@ -66,23 +68,22 @@ class Worker:
 			for i in range(num_tasks):
 				if self.pool[i]['duration'] <= 0:
 					completed_pool.append(self.pool[i])
-					logging.info("task completed: %s of job: %s" \
-						% (self.pool[i]["task_id"], self.pool[i]["job_id"]))
 					continue
 				new_pool.append(self.pool[i])
 
 			with self.pool_edit_lock:
 				self.pool = deepcopy(new_pool)
 
-			list(map(self.__completed_pool.put, completed_pool))
 			time.sleep(1)
+			list(map(self.__completed_pool.put, completed_pool))
 
 	def send_completion_update(self):
 		while True:
 			completed_tasks = []
 			while not self.__completed_pool.empty():
 				completed_task = self.__completed_pool.get()
-
+				logging.info("task completed: %s of job: %s"
+							 % (completed_task["task_id"], completed_task["job_id"]))
 				self.__completed_pool.task_done()
 				completed_tasks.append(completed_task)
 
@@ -101,19 +102,21 @@ class Worker:
 			time.sleep(1)
 
 	def initialize_connection(self):
-		self.listener_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		self.listener_socket = socket.socket(
+			socket.AF_INET, socket.SOCK_STREAM)
 		self.listener_socket.bind((self.HOST, self.PORT))
 
 		self.listener_socket.listen(1)
+
 
 if __name__ == '__main__':
 	PORT = (int)(sys.argv[1])
 	worker_id = sys.argv[2]
 
 	logging.basicConfig(
-		filename="worker_%s.log"%worker_id,
-		format="%(levelname)s %(asctime)s: %(message)s",
-		datefmt="%m/%d/%Y %I:%M:%S %p",
+		filename="worker_%s.log" % worker_id,
+		format="%(levelname)s %(asctime)s.%(msecs)03d: %(message)s",
+		datefmt="%m/%d/%Y %H:%M:%S",
 		level=logging.DEBUG,
 	)
 
