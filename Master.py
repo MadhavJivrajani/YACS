@@ -9,10 +9,9 @@ from queue import Queue
 
 from yacs.component.listener import Listener
 from yacs.component.scheduler import Scheduler
-from yacs.utils.errors import handle_thread_terminate, ThreadTerminate
+from yacs.utils.errors import *
 
 __all__ = ['Master']
-
 
 class Master:
 	def __init__(self) -> None:
@@ -36,10 +35,10 @@ class Master:
 
 		self.__job_queue = Queue()
 		self.__update_queue = Queue()
-		self.__scheduled_tasks_queue = Queue()
+		self.scheduled_tasks_queue = Queue()
 
 		self.jobs = {}
-		self.tasks_pool = []
+		self.tasks_pool = Queue()
 		self.slots_free = {}
 		self.worker_ports = {}
 
@@ -62,9 +61,10 @@ class Master:
 
 		return self
 
-	def initialize_connection(self):
+	def __initialize_connection(self):
 		self.sender_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		for worker_info in self.worker_config["workers"]:
+		for i in range(len(self.worker_config["workers"])):
+			worker_info = self.worker_config["workers"][i]
 
 			worker_id = worker_info['worker_id']
 			slots = worker_info["slots"]
@@ -78,9 +78,10 @@ class Master:
 			}
 
 			json_data = json.dumps(data)
-			self.sender_socket.sendall(json_data)
+			self.sender_socket.sendall(json_data.encode("utf-8"))
 
-			self.sender_socket.close()
+			if i != len(self.worker_config["workers"]) - 1:
+				self.sender_socket.close()
 
 		return self
 
@@ -92,8 +93,8 @@ class Master:
 			self.__job_queue.task_done()
 
 			job_id = job['job_id']
-			raw_map_tasks = job['job_id']['map_tasks']
-			raw_reduce_tasks = job['job_id']['reduce_tasks']
+			raw_map_tasks = job['map_tasks']
+			raw_reduce_tasks = job['reduce_tasks']
 
 			map_tasks = []
 			for map_task in raw_map_tasks:
@@ -117,17 +118,13 @@ class Master:
 				'reduce_tasks': reduce_tasks
 			}
 
-			tasks_to_be_sent = None
-
 			with self.scheduler_lock:
-				self.jobs[job[job_id]] = job_object
-				self.tasks_pool.extend(map_tasks)
-				tasks_to_be_sent = self.scheduler.schedule_tasks()
+				self.jobs[job_id] = job_object
+				list(map(self.tasks_pool.put, map_tasks))
+				self.scheduler.schedule_tasks()
 
-			for task in tasks_to_be_sent:
-				__scheduled_tasks_queue.put(task)
-
-			
+			# for task in tasks_to_be_sent:
+			# 	self.__scheduled_tasks_queue.put(task)
 
 	def __poll_update_queue(self) -> None:
 		while True:
@@ -155,39 +152,43 @@ class Master:
 						self.jobs[job_id]['completed_map_tasks'] += 1
 						if self.jobs[job_id]['completed_map_tasks'] == \
 							self.jobs[job_id]['total_map_tasks']:
-							self.tasks_pool.extend(self.jobs[job_id]['total_reduce_tasks'])
+							list(map(self.tasks_pool.put, self.jobs[job_id]['total_reduce_tasks']))
 					else:
 						self.jobs[job_id]['completed_reduce_tasks'] += 1
 						if self.jobs[job_id]['completed_reduce_tasks'] == \
 							self.jobs[job_id]['total_reduce_tasks']:
 							completed_jobs.append(job_id)
+							logging.info("job %s completed" % (job_id))
 			
 			# TODO: Log and Remove these job entries
-
-			tasks_to_be_sent = None
 			with self.scheduler_lock:
-				tasks_to_be_sent = self.scheduler.schedule_tasks()
+				self.scheduler.schedule_tasks()
 
-			for task in tasks_to_be_sent:
-				__scheduled_tasks_queue.put(task)
-							
+			# scheduled but not sent to workers
+			# for task in tasks_to_be_sent:
+			# 	self.__scheduled_tasks_queue.put(task)
+
 	def send_tasks_requests(self):
 		while True:
-			task = self.__scheduled_tasks_queue.get()
+			task = self.scheduled_tasks_queue.get()
 
+			task_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			self.scheduled_tasks_queue.task_done()
 			worker_id = task["worker_id"]
 			port = self.worker_ports[worker_id]
 
-			self.sender_socket.connect((self.master_ip, port))
+			# self.__send_msg(('127.0.0.1', port), self.__update_listeners)
+			task_socket.connect((self.master_ip, port))
+			#_ = self.sender_socket.recv(2048)
 
 			json_data = json.dumps(task)
-			self.sender_socket.sendall(json_data)
+			task_socket.sendall(json_data.encode("utf-8"))
 
-			self.sender_socket.close()
+			task_socket.close()
 
 	def set_sched_policy(self, sched_policy: str = "LL") -> object:
 		self.sched_policy = sched_policy
-		self.scheduler = Scheduler(self.sched_policy)
+		self.scheduler = Scheduler(self, self.sched_policy)
 		return self
 
 	def set_master_ip(self, ip: str = "127.0.0.1") -> object:
@@ -207,9 +208,18 @@ class Master:
 			job_queue_poll = self.__spawn(self.__poll_job_queue)
 			logging.info("job queue spawn successful")
 
+			update_queue_poll = self.__spawn(self.__poll_update_queue)
+			logging.info("update queue spawn successful")
+
+			send_tasks = self.__spawn(self.send_tasks_requests)
+
+			# self.__initialize_connection()
+
 			job_listener.join()
 			update_listener.join()
 			job_queue_poll.join()
+			update_queue_poll.join()
+			send_tasks.join()
 
 		except ThreadTerminate:
 			logging.info("shutting down listeners")
@@ -221,6 +231,7 @@ class Master:
 					listener.shutdown_flag.set()
 
 	def __send_msg(self, addr, listeners) -> None:
+		# {(localhost, 43942) : Listener(...)}
 		listeners[addr].ack_flag.set()
 
 	def __spawn(self, func, args: tuple = ()) -> threading.Thread:
@@ -254,13 +265,10 @@ class Master:
 			logging.info("new incoming worker connection, ip: %s port: %d" % (
 				worker_addr[0], worker_addr[1]))
 
-			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER")
+			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER", self.__update_queue)
 			update_listener.daemon = True
 			self.__update_listeners[worker_addr] = update_listener
 			update_listener.start()
-
-			with self.scheduler_lock:
-				pass
 
 	def __register_signal_handlers(self, handler_map: dict) -> None:
 		for sig, handler in handler_map.items():
@@ -279,8 +287,7 @@ if __name__ == '__main__':
 		)
 		m = Master()\
 			.config(path_to_config=path)\
-			.set_sched_policy(sched_policy=sched_policy)\
-			.initialize_connection()
+			.set_sched_policy(sched_policy=sched_policy)
 		m.start()
 
 	except Exception as e:

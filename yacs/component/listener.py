@@ -46,6 +46,7 @@ class Listener(threading.Thread):
 			self.__client.send(b"ack-test")
 
 		self.recv_json = json.loads(data)
+		print(self.recv_json)
 		self.__queue.put((self.__client_addr, self.recv_json))
 
 		self.shutdown_flag.set()
