@@ -36,6 +36,7 @@ class Master:
 		self.__job_queue = Queue()
 		self.__update_queue = Queue()
 		self.scheduled_tasks_queue = Queue()
+		self.__sched_queue = Queue()
 
 		self.jobs = {}
 		self.tasks_pool = Queue()
@@ -117,14 +118,13 @@ class Master:
 				'completed_reduce_tasks': 0,
 				'reduce_tasks': reduce_tasks
 			}
-
 			with self.scheduler_lock:
 				self.jobs[job_id] = job_object
-				list(map(self.tasks_pool.put, map_tasks))
-				self.scheduler.schedule_tasks()
-
-			# for task in tasks_to_be_sent:
-			# 	self.__scheduled_tasks_queue.put(task)
+				if len(map_tasks) != 0:
+					list(map(self.tasks_pool.put, map_tasks))
+				else:
+					list(map(self.tasks_pool.put, reduce_tasks))
+			self.__sched_queue.put(1)
 
 	def __poll_update_queue(self) -> None:
 		while True:
@@ -147,26 +147,32 @@ class Master:
 				job_id = task['job_id']
 				task_type = task['type']
 
+				logging.info("completed task %s" % (task["task_id"]))
+
 				with self.scheduler_lock:
 					if task_type == 'map':
 						self.jobs[job_id]['completed_map_tasks'] += 1
 						if self.jobs[job_id]['completed_map_tasks'] == \
 							self.jobs[job_id]['total_map_tasks']:
-							list(map(self.tasks_pool.put, self.jobs[job_id]['total_reduce_tasks']))
+							list(map(self.tasks_pool.put, self.jobs[job_id]['reduce_tasks']))
 					else:
 						self.jobs[job_id]['completed_reduce_tasks'] += 1
 						if self.jobs[job_id]['completed_reduce_tasks'] == \
 							self.jobs[job_id]['total_reduce_tasks']:
 							completed_jobs.append(job_id)
 							logging.info("job %s completed" % (job_id))
-			
-			# TODO: Log and Remove these job entries
-			with self.scheduler_lock:
-				self.scheduler.schedule_tasks()
 
-			# scheduled but not sent to workers
-			# for task in tasks_to_be_sent:
-			# 	self.__scheduled_tasks_queue.put(task)
+			for job in completed_jobs:
+				del self.jobs[job]
+
+			self.__sched_queue.put(1)
+
+	def __poll_scheduler(self):
+		while True:
+			_ = self.__sched_queue.get()
+			self.__sched_queue.task_done()
+
+			self.scheduler.schedule_tasks()
 
 	def send_tasks_requests(self):
 		while True:
@@ -177,9 +183,7 @@ class Master:
 			worker_id = task["worker_id"]
 			port = self.worker_ports[worker_id]
 
-			# self.__send_msg(('127.0.0.1', port), self.__update_listeners)
 			task_socket.connect((self.master_ip, port))
-			#_ = self.sender_socket.recv(2048)
 
 			json_data = json.dumps(task)
 			task_socket.sendall(json_data.encode("utf-8"))
@@ -212,14 +216,14 @@ class Master:
 			logging.info("update queue spawn successful")
 
 			send_tasks = self.__spawn(self.send_tasks_requests)
-
-			# self.__initialize_connection()
+			sched_tasks = self.__spawn(self.__poll_scheduler)
 
 			job_listener.join()
 			update_listener.join()
 			job_queue_poll.join()
 			update_queue_poll.join()
 			send_tasks.join()
+			sched_tasks.join()
 
 		except ThreadTerminate:
 			logging.info("shutting down listeners")
@@ -231,7 +235,6 @@ class Master:
 					listener.shutdown_flag.set()
 
 	def __send_msg(self, addr, listeners) -> None:
-		# {(localhost, 43942) : Listener(...)}
 		listeners[addr].ack_flag.set()
 
 	def __spawn(self, func, args: tuple = ()) -> threading.Thread:
@@ -247,11 +250,8 @@ class Master:
 
 		while True:
 			(client, client_addr) = job_socket.accept()
-			logging.info("new incoming client connection, ip: %s port: %d" % (
-				client_addr[0], client_addr[1]))
 
-			job_listener = Listener(
-				client, client_addr, "JOB_LISTENER", self.__job_queue)
+			job_listener = Listener(client, client_addr, "JOB_LISTENER", self.__job_queue)
 			self.__job_listeners[client_addr] = job_listener
 			job_listener.daemon = True
 			job_listener.start()
@@ -262,8 +262,6 @@ class Master:
 
 		while True:
 			(worker, worker_addr) = update_socket.accept()
-			logging.info("new incoming worker connection, ip: %s port: %d" % (
-				worker_addr[0], worker_addr[1]))
 
 			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER", self.__update_queue)
 			update_listener.daemon = True

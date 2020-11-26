@@ -29,9 +29,6 @@ class Listener(threading.Thread):
 
 		self.__queue = queue
 
-		logging.info("connection to ip: %s port: %d successfully established" % \
-			(self.__client_addr[0], self.__client_addr[1]))		
-
 	def run(self) -> None:
 		data = []
 		while True:
@@ -46,7 +43,6 @@ class Listener(threading.Thread):
 			self.__client.send(b"ack-test")
 
 		self.recv_json = json.loads(data)
-		print(self.recv_json)
 		self.__queue.put((self.__client_addr, self.recv_json))
 
 		self.shutdown_flag.set()
