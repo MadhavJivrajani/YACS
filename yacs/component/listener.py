@@ -25,7 +25,6 @@ class Listener(threading.Thread):
 
 		self.recv_json = {}
 
-		self.shutdown_flag = threading.Event()
 		self.ack_flag = threading.Event()
 
 		self.__queue = queue
@@ -45,5 +44,3 @@ class Listener(threading.Thread):
 
 		self.recv_json = json.loads(data)
 		self.__queue.put((self.__client_addr, self.recv_json))
-
-		self.shutdown_flag.set()

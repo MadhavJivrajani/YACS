@@ -5,6 +5,9 @@ import sys
 import random
 import numpy as np
 
+np.random.seed(42)
+random.seed(42)
+
 def create_job_request(job_id):
 	number_of_map_tasks=random.randrange(1,5)
 	number_of_reduce_tasks=random.randrange(1,3)
@@ -38,7 +41,7 @@ if __name__ == '__main__':
 	current_time=last_request_time=time.time() # time 0
 	job_request=create_job_request(str(request_number))
 	print("interval: ",0,"\n Job request :",job_request)
-	send_request(job_request)
+	#send_request(job_request)
 	request_number+=1
 	while request_number<number_of_requests:
 		interval=arrivals[request_number-1]
@@ -48,7 +51,7 @@ if __name__ == '__main__':
 			time.sleep(0.01)
 		job_request=create_job_request(str(request_number))
 		print("interval: ",interval,"\n Job request :",job_request)
-		send_request(job_request)
+		#send_request(job_request)
 		last_request_time=time.time()
 		request_number+=1
 
