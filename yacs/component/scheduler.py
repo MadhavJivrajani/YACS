@@ -3,25 +3,80 @@ import time
 import logging
 
 class Random:
+
 	def __init__(self, master: object) -> None:
 		self.master = master
-		self.workers = list(self.master.worker_config["workers"]\
-			.map(lambda x: x["worker_id"]))
 
-	def __is_slot_available(self, worker_id: str) -> bool:
-		return self.master.slots_free[worker_id] != 0
-	
-	def __choose_worker(self) -> str:
-		return random.choice(self.workers)
+	# Returns True only when all tasks are scheduled
+	def is_buffer_empty(self) -> bool:
+		return self.master.tasks_pool.empty()
 
-	def schedule_task(self) -> None:
-		worker = None
-		while True:
-			worker = self.__choose_worker()
-			if self.__is_slot_available(worker):
-				break
-		to_sched = self.master.task_pool.pop(0)
-		print(to_sched)
+	def schedule_tasks(self) -> None:
+		# Iterate until the all jobs are not scheduled
+		while not self.is_buffer_empty():
+			is_slot_free = True	
+			with self.master.scheduler_lock:
+				# Get the worker id that is least loaded
+				worker_id_list = self.master.slots_free.keys()
+				worker_id = random.choice(worker_id_list)
+				if self.master.slots_free[worker_id] == 0:
+					is_slot_free = False
+
+			if not is_slot_free:
+				time.sleep(1)
+				continue
+
+			with self.master.scheduler_lock:
+				#logging.info("Scheduler second lock acquired")	
+				next_task = self.master.tasks_pool.get()
+
+				logging.info("task %s from job %s scheduled on %s" \
+					% (next_task["task_id"], next_task["job_id"], worker_id))
+				next_task["worker_id"] = worker_id
+
+				self.master.scheduled_tasks_queue.put(next_task)
+				self.master.slots_free[worker_id] -= 1
+
+class RoundRobin:
+
+	def __init__(self, master: object) -> None:
+		self.master = master
+
+		self.workers = self.master.slots_free.keys()
+		self.num_workers = len(self.workers)
+		self.curr_index = -1
+
+
+	# Returns True only when all tasks are scheduled
+	def is_buffer_empty(self) -> bool:
+		return self.master.tasks_pool.empty()
+
+	def schedule_tasks(self) -> None:
+		# Iterate until the all jobs are not scheduled
+		while not self.is_buffer_empty():
+			is_slot_free = True	
+			with self.master.scheduler_lock:
+				# Get the worker id that is least loaded
+
+				self.curr_index = (self.curr_index + 1) % self.num_workers
+				worker_id = self.workers[curr_index]
+				if self.master.slots_free[worker_id] == 0:
+					is_slot_free = False
+
+			if not is_slot_free:
+				time.sleep(1)
+				continue
+
+			with self.master.scheduler_lock:
+				#logging.info("Scheduler second lock acquired")	
+				next_task = self.master.tasks_pool.get()
+
+				logging.info("task %s from job %s scheduled on %s" \
+					% (next_task["task_id"], next_task["job_id"], worker_id))
+				next_task["worker_id"] = worker_id
+
+				self.master.scheduled_tasks_queue.put(next_task)
+				self.master.slots_free[worker_id] -= 1
 
 # task pool is empty or no free slots
 class LeastLoaded:
@@ -92,6 +147,8 @@ class Scheduler:
 	def __sched_class(self) -> object:
 		if self.strategy == "LL":
 			return LeastLoaded(self.master)
+		elif self.strategy == "R":
+			return Random(self.master)
 
 	def schedule_tasks(self):
 		return self.scheduler.schedule_tasks()
