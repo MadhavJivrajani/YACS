@@ -15,6 +15,7 @@ class Listener(threading.Thread):
 		queue: Queue = Queue(),
 		buff_size: int = 2048,
 	) -> None:
+
 		threading.Thread.__init__(self)
 		self.__name = name
 		self.__client = sock

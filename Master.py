@@ -4,6 +4,7 @@ import threading
 import socket
 import signal
 import logging
+
 from typing import List
 from queue import Queue
 
@@ -59,30 +60,6 @@ class Master:
 			port = worker_info["port"]
 			self.slots_free[worker_id] = slots
 			self.worker_ports[worker_id] = port
-
-		return self
-
-	def __initialize_connection(self):
-		self.sender_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		for i in range(len(self.worker_config["workers"])):
-			worker_info = self.worker_config["workers"][i]
-
-			worker_id = worker_info['worker_id']
-			slots = worker_info["slots"]
-			port = worker_info["port"]
-
-			self.sender_socket.connect((self.master_ip, port))
-
-			data = {
-				'worker_slots_count': slots,
-				'worker_id': worker_id
-			}
-
-			json_data = json.dumps(data)
-			self.sender_socket.sendall(json_data.encode("utf-8"))
-
-			if i != len(self.worker_config["workers"]) - 1:
-				self.sender_socket.close()
 
 		return self
 

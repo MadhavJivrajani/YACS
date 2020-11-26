@@ -2,13 +2,14 @@ import sys
 import socket
 import time
 import json
+import logging
+
 from copy import deepcopy
 from queue import Queue
 from threading import Thread, Lock
 
 class Worker:
 	def __init__(self, PORT, worker_id: str, HOST='127.0.0.1', MASTER_PORT=5001):
-
 		self.HOST = HOST
 		self.PORT = PORT
 		self.MASTER_PORT = MASTER_PORT
@@ -24,7 +25,7 @@ class Worker:
 		listener_thread.daemon = True
 		task_thread = Thread(target = self.execute_tasks)
 		task_thread.daemon = True
-		update_thread = Thread(target = self.send_completion_requests)
+		update_thread = Thread(target = self.send_completion_update)
 		update_thread.daemon = True
 
 		listener_thread.start()
@@ -49,7 +50,7 @@ class Worker:
 					data += received_data.decode('utf-8')
 
 			new_task = eval(data)
-			print("TASK RECV: %s" % new_task["task_id"])
+			logging.info("task recieved: %s of job: %s" % (new_task["task_id"], new_task["job_id"]))
 			with self.pool_edit_lock:
 				self.pool.append(new_task)
 
@@ -65,23 +66,23 @@ class Worker:
 			for i in range(num_tasks):
 				if self.pool[i]['duration'] <= 0:
 					completed_pool.append(self.pool[i])
+					logging.info("task completed: %s of job: %s" \
+						% (self.pool[i]["task_id"], self.pool[i]["job_id"]))
 					continue
 				new_pool.append(self.pool[i])
 
 			with self.pool_edit_lock:
 				self.pool = deepcopy(new_pool)
 
-			time.sleep(1)
 			list(map(self.__completed_pool.put, completed_pool))
+			time.sleep(1)
 
-	def send_completion_requests(self):
+	def send_completion_update(self):
 		while True:
 			completed_tasks = []
 			while not self.__completed_pool.empty():
 				completed_task = self.__completed_pool.get()
-				print("TASK COMP: %s" % completed_task["task_id"])
 
-				#print(completed_task)
 				self.__completed_pool.task_done()
 				completed_tasks.append(completed_task)
 
@@ -90,11 +91,11 @@ class Worker:
 				continue
 			update_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 			update_socket.connect((self.HOST, self.MASTER_PORT))
-			data = {
+			update = {
 				'worker_id': self.worker_id,
 				'data': completed_tasks,
 			}
-			json_data = json.dumps(data)
+			json_data = json.dumps(update)
 			update_socket.sendall(json_data.encode("utf-8"))
 			update_socket.close()
 			time.sleep(1)
@@ -108,6 +109,14 @@ class Worker:
 if __name__ == '__main__':
 	PORT = (int)(sys.argv[1])
 	worker_id = sys.argv[2]
+
+	logging.basicConfig(
+		filename="worker_%s.log"%worker_id,
+		format="%(levelname)s %(asctime)s: %(message)s",
+		datefmt="%m/%d/%Y %I:%M:%S %p",
+		level=logging.DEBUG,
+	)
+
 	worker = Worker(PORT, worker_id)
 	worker.initialize_connection()
 	worker.start_worker()

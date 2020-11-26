@@ -17,7 +17,7 @@ class Random:
 			is_slot_free = True	
 			with self.master.scheduler_lock:
 				# Get the worker id that is least loaded
-				worker_id_list = self.master.slots_free.keys()
+				worker_id_list = list(self.master.slots_free.keys())
 				worker_id = random.choice(worker_id_list)
 				if self.master.slots_free[worker_id] == 0:
 					is_slot_free = False
@@ -42,10 +42,9 @@ class RoundRobin:
 	def __init__(self, master: object) -> None:
 		self.master = master
 
-		self.workers = self.master.slots_free.keys()
+		self.workers = list(self.master.slots_free.keys())
 		self.num_workers = len(self.workers)
 		self.curr_index = -1
-
 
 	# Returns True only when all tasks are scheduled
 	def is_buffer_empty(self) -> bool:
@@ -57,9 +56,8 @@ class RoundRobin:
 			is_slot_free = True	
 			with self.master.scheduler_lock:
 				# Get the worker id that is least loaded
-
 				self.curr_index = (self.curr_index + 1) % self.num_workers
-				worker_id = self.workers[curr_index]
+				worker_id = self.workers[self.curr_index]
 				if self.master.slots_free[worker_id] == 0:
 					is_slot_free = False
 
@@ -149,6 +147,8 @@ class Scheduler:
 			return LeastLoaded(self.master)
 		elif self.strategy == "R":
 			return Random(self.master)
+		elif self.strategy == "RR":
+			return RoundRobin(self.master)
 
 	def schedule_tasks(self):
 		return self.scheduler.schedule_tasks()
