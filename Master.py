@@ -308,7 +308,7 @@ class Master:
 		while True:
 			(client, client_addr) = job_socket.accept()
 
-			job_listener = Listener(client, client_addr, "JOB_LISTENER", self.__job_queue)
+			job_listener = Listener(client, client_addr, self.__job_queue, "JOB_LISTENER")
 			self.__job_listeners[client_addr] = job_listener
 			job_listener.daemon = True
 			job_listener.start()
@@ -321,7 +321,7 @@ class Master:
 		while True:
 			(worker, worker_addr) = update_socket.accept()
 
-			update_listener = Listener(worker, worker_addr, "UPDATE_LISTENER", self.__update_queue)
+			update_listener = Listener(worker, worker_addr, self.__update_queue, "UPDATE_LISTENER")
 			update_listener.daemon = True
 			self.__update_listeners[worker_addr] = update_listener
 			update_listener.start()
@@ -330,7 +330,6 @@ class Master:
 	def __register_signal_handlers(self, handler_map: dict) -> None:
 		for sig, handler in handler_map.items():
 			signal.signal(sig, handler)
-
 
 if __name__ == '__main__':
 	try:

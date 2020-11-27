@@ -8,6 +8,7 @@ from copy import deepcopy
 from queue import Queue
 from threading import Thread, Lock
 
+__all__ = ['Worker']
 
 class Worker:
 	def __init__(self, PORT, worker_id: str, HOST='127.0.0.1', MASTER_PORT=5001):
