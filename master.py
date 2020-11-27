@@ -19,9 +19,9 @@ class Master:
 
 	It handles the following:
 
-	- Listen for job requests (on port ``5000``)
-	- Listen for updates from workers (on port ``5001``)
-	- Perform scheduling of tasks based on the specifed policy
+	* Listen for job requests (on port ``5000``)
+	* Listen for updates from workers (on port ``5001``)
+	* Perform scheduling of tasks based on the specifed policy
 	"""
 	def __init__(self) -> None:
 		self.__sched_policies = ["LL", "RR", "R"]
@@ -67,9 +67,9 @@ class Master:
 		
 		The following are available:
 
-		- LL: Least Loaded
-		- RR: Round Robin
-		- R : Random
+		* LL: Least Loaded
+		* RR: Round Robin
+		* R : Random
 		"""
 		return self.__sched_policies
 
@@ -253,13 +253,13 @@ class Master:
 
 		Threads spawned:
 
-		- Listen to incoming job requests
-		- Listen to updates from workers
-		- Poll job queue
-		- Poll update queue
-		- Send tasks to workers to be executed
+		* Listen to incoming job requests
+		* Listen to updates from workers
+		* Poll job queue
+		* Poll update queue
+		* Send tasks to workers to be executed
 
-		For more details refer :ref:`dev`
+		For more details refer :ref:`master`
 		"""
 		try:
 			job_listener = self.__spawn(

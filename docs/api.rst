@@ -6,7 +6,7 @@ This lists all classes and associated methods implemented in ``yacs``.
 Master
 ------
 
-.. automodule:: Master
+.. automodule:: master
    :members:
    :undoc-members:
 
@@ -21,6 +21,13 @@ Listener
 --------
 
 .. automodule:: yacs.component.listener
+   :members:
+   :undoc-members:
+
+Worker
+------
+
+.. automodule:: yacs.component.worker
    :members:
    :undoc-members:
 

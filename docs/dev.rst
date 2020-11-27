@@ -88,6 +88,8 @@ Implementation
 	1. When a new job request arrives at the ``Master``.
 	2. When a ``Worker`` sends an update on a task.
 
+.. _worker:
+
 Worker
 ------
 
@@ -97,3 +99,13 @@ At a high level, the ``Worker`` class does the following:
 
 1. Listen for task assignments from the ``Master`` on a port specified as command line argument (``PORT``).
 2. After simulating task execution, send an update to the ``Master`` signifying that task execution is completed successfuly.
+
+Implementation
+..............
+
+* Maintain a queue of completed tasks which can be polled and completion updates can be sent accordingly to the ``Master``.
+* Spawn threads to implement the above mentioned functionality
+
+	1. Spawn a thread to listen for incoming tasks from the ``Master``
+	2. Spawn a thread to simulate execution of tasks on the ``Worker``
+	3. Spawn a thread to poll the completed queue. Items taken out of this queue are then part of the completion update sent to the master.
