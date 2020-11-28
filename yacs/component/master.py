@@ -8,6 +8,9 @@ import logging
 from typing import List
 from queue import Queue
 
+sys.path.append("./")
+sys.path.append("../../")
+
 from yacs.component.listener import Listener
 from yacs.component.scheduler import Scheduler
 from yacs.utils.errors import *

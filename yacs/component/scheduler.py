@@ -2,6 +2,8 @@ import random
 import time
 import logging
 
+__all__ = ['Scheduler']
+
 class Random:
 	"""Class implementing logic for the Random (``R``) scheduling policy.
 
