@@ -341,6 +341,9 @@ if __name__ == '__main__':
 			datefmt="%m/%d/%Y %H:%M:%S",
 			level=logging.DEBUG,
 		)
+		console = logging.StreamHandler()
+		console.setLevel(logging.DEBUG)
+		logging.getLogger().addHandler(console)
 		m = Master()\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)

@@ -191,6 +191,9 @@ if __name__ == '__main__':
 		datefmt="%m/%d/%Y %H:%M:%S",
 		level=logging.DEBUG,
 	)
+	console = logging.StreamHandler()
+	console.setLevel(logging.DEBUG)
+	logging.getLogger().addHandler(console)
 
 	worker = Worker(port, worker_id)
 	worker.initialize_connection()

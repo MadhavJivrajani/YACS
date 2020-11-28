@@ -35,12 +35,8 @@ class Random:
 				if self.master.slots_free[worker_id] == 0:
 					is_slot_free = False
 
-			# sleep only if slots are not free
-			# done to make sure that the lock is not held 
-			# during sleep
 			if not is_slot_free:
-				time.sleep(1)
-				continue
+				break
 
 			# update relevant data structures
 			with self.master.scheduler_lock:
@@ -95,8 +91,7 @@ class RoundRobin:
 			# done to make sure that the lock is not held 
 			# during sleep
 			if not is_slot_free:
-				time.sleep(1)
-				continue
+				break
 
 			# update relevant data structures
 			with self.master.scheduler_lock:
