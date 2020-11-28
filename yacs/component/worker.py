@@ -12,6 +12,7 @@ from threading import Thread, Lock
 sys.path.append("./")
 sys.path.append("../../")
 
+from yacs.utils.logger import CustomFormatter
 from yacs.utils.errors import *
 
 __all__ = ['Worker']
@@ -30,6 +31,9 @@ class Worker:
 	:param worker_id: unique identifier for the worker.
 	:type port: `str`
 
+	:param logger: instance of logger with custom formatting
+	:type logger: :py:class:`logging.RootLogger`
+
 	:param host: ip address of the ``Master`` node.
 	:type host: `str`
 
@@ -39,6 +43,7 @@ class Worker:
 	def __init__(self,
 		port: int,
 		worker_id: str,
+		logger: logging.RootLogger,
 		host: str='127.0.0.1',
 		master_port: int=5001,
 	) -> None:
@@ -49,6 +54,8 @@ class Worker:
 		self.pool = []
 		self.pool_edit_lock = Lock()
 		self.worker_id = worker_id
+
+		self.__logger = logger
 
 		self.__completed_pool = Queue()
 
@@ -70,14 +77,19 @@ class Worker:
 		try:
 			listener_thread = Thread(target=self.__listen_for_task_requests)
 			listener_thread.daemon = True
+
 			task_thread = Thread(target=self.__execute_tasks)
 			task_thread.daemon = True
+
 			update_thread = Thread(target=self.__send_completion_update)
 			update_thread.daemon = True
 
 			listener_thread.start()
+			logging.info("listener thread spawned successfully")
 			task_thread.start()
+			logging.info("task thread spawned successfully")
 			update_thread.start()
+			logging.info("update thread spawned successfully")
 
 			listener_thread.join()
 			task_thread.join()
@@ -149,7 +161,7 @@ class Worker:
 			# form the update
 			while not self.__completed_pool.empty():
 				completed_task = self.__completed_pool.get()
-				logging.info("task completed: %s of job: %s"
+				self.__logger.success_task("task completed: %s of job: %s"
 							 % (completed_task["task_id"], completed_task["job_id"]))
 				self.__completed_pool.task_done()
 				completed_tasks.append(completed_task)
@@ -180,21 +192,38 @@ class Worker:
 
 		self.listener_socket.listen(1)
 
-
 if __name__ == '__main__':
-	port = (int)(sys.argv[1])
-	worker_id = sys.argv[2]
+	try:
+		port = (int)(sys.argv[1])
+		worker_id = sys.argv[2]
 
-	logging.basicConfig(
-		filename="worker_%s.log" % worker_id,
-		format="%(levelname)s %(asctime)s.%(msecs)03d: %(message)s",
-		datefmt="%m/%d/%Y %H:%M:%S",
-		level=logging.DEBUG,
-	)
-	console = logging.StreamHandler()
-	console.setLevel(logging.DEBUG)
-	logging.getLogger().addHandler(console)
+		logger = logging.getLogger()
+		handler = logging.StreamHandler()
+		formatter = CustomFormatter()
+		handler.setFormatter(formatter)
+		logger.addHandler(handler)
 
-	worker = Worker(port, worker_id)
-	worker.initialize_connection()
-	worker.start_worker()
+		file_handler = logging.FileHandler("worker_%s.log" % worker_id)
+		file_handler.setLevel(logging.DEBUG)
+		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s")
+		file_handler.setFormatter(file_formatter)
+		logger.addHandler(file_handler)
+
+		logger.setLevel(logging.DEBUG)
+		logging.SUCCESS = 25
+		logging.SUCCESSJOB = 26
+		logging.addLevelName(logging.SUCCESS, 'SUCCESS_TASK')
+		logging.addLevelName(logging.SUCCESSJOB, 'SUCCESS_JOB')
+
+		setattr(logger,
+				'success_task',
+				lambda message, *args: logger._log(logging.SUCCESS, message, args))
+		setattr(logger,
+				'success_job',
+				lambda message, *args: logger._log(logging.SUCCESSJOB, message, args))
+
+		worker = Worker(port, worker_id, logger)
+		worker.initialize_connection()
+		worker.start_worker()
+	except Exception as e:
+		logging.error(e)

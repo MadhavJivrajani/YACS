@@ -13,6 +13,7 @@ sys.path.append("../../")
 
 from yacs.component.listener import Listener
 from yacs.component.scheduler import Scheduler
+from yacs.utils.logger import CustomFormatter
 from yacs.utils.errors import *
 
 __all__ = ['Master']
@@ -25,12 +26,16 @@ class Master:
 	* Listen for job requests (on port ``5000``)
 	* Listen for updates from workers (on port ``5001``)
 	* Perform scheduling of tasks based on the specifed policy
+
+	:param logger: instance of logger with custom formatting
+	:type logger: :py:class:`logging.RootLogger`
 	"""
-	def __init__(self) -> None:
+	def __init__(self, logger: logging.RootLogger) -> None:
 		self.__sched_policies = ["LL", "RR", "R"]
 		self.sched_policy = "LL"
 
-		logging.info("scheduling policy set to %s" % self.sched_policy)
+		self.logger = logger
+		self.logger.info("scheduling policy set to %s" % self.sched_policy)
 		self.worker_config = dict()
 
 		# in case functionality for providing updates to clients is provided.
@@ -108,7 +113,7 @@ class Master:
 			# get() in Queue is a blocking call
 			# will block here if queue is empty
 			client, job = self.__job_queue.get()
-			logging.info("scheduling job: %s recieved from ip: %s port: %d"
+			self.logger.info("scheduling job: %s recieved from ip: %s port: %d"
 						 % (job["job_id"], client[0], client[1]))
 
 			# 'notify' the queue that the current item
@@ -158,7 +163,7 @@ class Master:
 			# get() in Queue is a blocking call
 			# will block here if queue is empty
 			worker, update = self.__update_queue.get()
-			logging.info("received update from %s at ip: %s port: %d"
+			self.logger.info("received update from %s at ip: %s port: %d"
 						 % (update["worker_id"], worker[0], worker[1]))
 
 			# 'notify' the queue that the current item
@@ -178,7 +183,7 @@ class Master:
 				job_id = task['job_id']
 				task_type = task['type']
 
-				logging.info("completed task %s" % (task["task_id"]))
+				self.logger.success_task("completed task %s" % (task["task_id"]))
 
 				# acquire lock and update data structures
 				# while taking care of the map reduce dependency
@@ -194,7 +199,7 @@ class Master:
 						if self.jobs[job_id]['completed_reduce_tasks'] == \
 							self.jobs[job_id]['total_reduce_tasks']:
 							completed_jobs.append(job_id)
-							logging.info("job %s completed" % (job_id))
+							self.logger.success_job("job %s completed" % (job_id))
 
 			# delete completed jobs from the 
 			# current jobs dict
@@ -267,17 +272,17 @@ class Master:
 		try:
 			job_listener = self.__spawn(
 				self.__spawn_job_listener, args=(5000,))
-			logging.info("job listener spawn successful")
+			self.logger.info("job listener spawn successful")
 
 			update_listener = self.__spawn(
 				self.__spawn_update_listener, args=(5001,))
-			logging.info("update listener spawn successful")
+			self.logger.info("update listener spawn successful")
 
 			job_queue_poll = self.__spawn(self.__poll_job_queue)
-			logging.info("job queue spawn successful")
+			self.logger.info("job queue spawn successful")
 
 			update_queue_poll = self.__spawn(self.__poll_update_queue)
-			logging.info("update queue spawn successful")
+			self.logger.info("update queue spawn successful")
 
 			send_tasks = self.__spawn(self.__send_tasks_requests)
 			sched_tasks = self.__spawn(self.__poll_scheduler)
@@ -290,7 +295,7 @@ class Master:
 			sched_tasks.join()
 
 		except ThreadTerminate:
-			logging.info("shutting down listeners")
+			self.logger.info("shutting down listeners")
 
 	def __send_msg(self, addr, listeners) -> None:
 		listeners[addr].ack_flag.set()
@@ -338,18 +343,36 @@ if __name__ == '__main__':
 	try:
 		path = sys.argv[1]
 		sched_policy = sys.argv[2]
-		logging.basicConfig(
-			filename="yacs.log",
-			format="%(levelname)s %(asctime)s.%(msecs)03d: %(message)s",
-			datefmt="%m/%d/%Y %H:%M:%S",
-			level=logging.DEBUG,
-		)
-		console = logging.StreamHandler()
-		console.setLevel(logging.DEBUG)
-		logging.getLogger().addHandler(console)
-		m = Master()\
+
+		logger = logging.getLogger()
+		handler = logging.StreamHandler()
+		formatter = CustomFormatter()
+		handler.setFormatter(formatter)
+		logger.addHandler(handler)
+
+		file_handler = logging.FileHandler("yacs.log")
+		file_handler.setLevel(logging.DEBUG)
+		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s")
+		file_handler.setFormatter(file_formatter)
+		logger.addHandler(file_handler)
+
+		logger.setLevel(logging.DEBUG)
+		logging.SUCCESS = 25
+		logging.SUCCESSJOB = 26
+		logging.addLevelName(logging.SUCCESS, 'SUCCESS_TASK')
+		logging.addLevelName(logging.SUCCESSJOB, 'SUCCESS_JOB')
+
+		setattr(logger,
+				'success_task',
+				lambda message, *args: logger._log(logging.SUCCESS, message, args))
+		setattr(logger,
+				'success_job',
+				lambda message, *args: logger._log(logging.SUCCESSJOB, message, args))
+
+		m = Master(logger)\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)
+
 		m.start()
 
 	except Exception as e:
