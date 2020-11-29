@@ -22,6 +22,7 @@ class Master:
 	* Listen for job requests (on port ``5000``)
 	* Listen for updates from workers (on port ``5001``)
 	* Perform scheduling of tasks based on the specifed policy
+
 	:param logger: instance of logger with custom formatting
 	:type logger: :py:class:`logging.RootLogger`
 	"""
@@ -228,6 +229,7 @@ class Master:
 
 	def set_sched_policy(self, sched_policy: str = "LL") -> object:
 		"""Sets the scheduling policy for the ``Master``
+
 		:param sched_policy: scheduling policy to be configured for the ``Master``
 		:type sched_policy: `str`
 		"""
