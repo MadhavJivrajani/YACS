@@ -46,7 +46,15 @@ make html
 The docs should now be available in the `docs/_build` directory.
 
 ### Using Docker 
-add docker stuff
+The Docker image for master is `aditiahuja/yacs_master` and worker is `aditiahuja/yacs_worker`.  Pull them using `docker pull aditiahuja/yacs_master` and `docker pull aditiahuja/yacs_worker` respectively.       
+
+These are also available in the `docker` folder as `Dockerfile` and `worker_dockerfile` respectively.  
+To build them locally run: `docker build -t master .` for master and `docker build -t w1 -f worker_dockerfile .` for worker.       
+
+#### Running YACS
+1. Run `./start.sh <scheduling policy> <no. of workers>`. For eg. `./start.sh LL 3`.   
+2. Enter the ID and port for each worker and then the number of requests.
+3. To inspect the logs, run `docker exec -it master bash -c "cat yacs.log"`.      
 
 ## Design
 
