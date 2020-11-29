@@ -1,25 +1,11 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[7]:
-
-
 import os
 import re
 import json
 from copy import deepcopy
 
-
-# In[8]:
-
-
 data = {}
 raw_data = {}
 keys = ['rr', 'll', 'r']
-
-
-# In[9]:
-
 
 worker_file_name_pattern = 'worker_(.*).log'
 
@@ -48,29 +34,21 @@ for key in keys:
     raw_data[key]['master_data'] = master_data
     raw_data[key]['worker_data'] = worker_data
 
+worker_task_received_pattern = 'INFO (\d+-\d+-\d+) (\d+:\d+:\d+\.\d+): task recieved: (.*) of job: (.*)'
+worker_task_completed_pattern = 'SUCCESS_TASK (\d+-\d+-\d+) (\d+:\d+:\d+\.\d+): task completed: (.*) of job: (.*)'
 
-# In[10]:
+job_received_pattern = 'INFO (\d+-\d+-\d+) (\d+:\d+:\d+\.\d+): scheduling job: (.+) recieved from .*'
+job_completed_pattern = 'SUCCESS_JOB (\d+-\d+-\d+) (\d+:\d+:\d+\.\d+): job (.+) completed'
 
-
-worker_task_received_pattern = 'INFO (\d+/\d+/\d+) (\d+:\d+:\d+\.\d+): task recieved: (.*) of job: (.*)'
-worker_task_completed_pattern = 'INFO (\d+/\d+/\d+) (\d+:\d+:\d+\.\d+): task completed: (.*) of job: (.*)'
-
-job_received_pattern = 'INFO (\d+/\d+/\d+) (\d+:\d+:\d+\.\d+): scheduling job: (.+) recieved from .*'
-job_completed_pattern = 'INFO (\d+/\d+/\d+) (\d+:\d+:\d+\.\d+): job (.+) completed'
-
-master_task_scheduled_pattern = 'INFO (\d+/\d+/\d+) (\d+:\d+:\d+\.\d+): task (.*) from (.*) scheduled on (.*)'
-master_task_completed_pattern = 'INFO (\d+/\d+/\d+) (\d+:\d+:\d+\.\d+): completed task (.*)'
-
-
-# In[11]:
-
+master_task_scheduled_pattern = 'INFO (\d+-\d+-\d+) (\d+:\d+:\d+\.\d+): task (.*) from (.*) scheduled on (.*)'
+master_task_completed_pattern = 'SUCCESS_TASK (\d+-\d+-\d+) (\d+:\d+:\d+\.\d+): completed task (.*)'
 
 data = {}
 for key in keys:
     master_data = raw_data[key]['master_data']
     worker_data = raw_data[key]['worker_data']
     
-    # Find Master Data
+
     jobs_buffer = {}
     jobs = []
     
@@ -181,16 +159,5 @@ for key in keys:
         'worker_data': worker_info
     }
 
-
-# In[12]:
-
-
 with open('data.json', 'w') as fp:
     json.dump(data, fp)
-
-
-# In[ ]:
-
-
-
-

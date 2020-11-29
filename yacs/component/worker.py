@@ -202,7 +202,7 @@ if __name__ == '__main__':
 
 		file_handler = logging.FileHandler("worker_%s.log" % worker_id)
 		file_handler.setLevel(logging.DEBUG)
-		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s")
+		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s", "%Y-%m-%d %H:%M:%S")
 		file_handler.setFormatter(file_formatter)
 		logger.addHandler(file_handler)
 
