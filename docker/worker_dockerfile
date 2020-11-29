@@ -1,0 +1,10 @@
+FROM python:3.9
+WORKDIR /app
+ADD . /app
+
+ENV port 4000
+ENV id 0
+
+EXPOSE $port
+
+CMD ["sh","-c","python3 yacs/component/worker.py ${port} ${id}"]
