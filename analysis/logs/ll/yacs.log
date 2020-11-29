@@ -1,234 +1,474 @@
-INFO 2020-11-29 18:02:23.511: scheduling policy set to LL
-INFO 2020-11-29 18:02:23.513: job listener spawn successful
-INFO 2020-11-29 18:02:23.514: update listener spawn successful
-INFO 2020-11-29 18:02:23.516: job queue spawn successful
-INFO 2020-11-29 18:02:23.517: update queue spawn successful
-INFO 2020-11-29 18:02:28.180: scheduling job: 0 recieved from ip: 127.0.0.1 port: 34000
-INFO 2020-11-29 18:02:28.180: task 0_M0 from job 0 scheduled on 1
-INFO 2020-11-29 18:02:28.658: scheduling job: 1 recieved from ip: 127.0.0.1 port: 34004
-INFO 2020-11-29 18:02:28.659: task 1_M0 from job 1 scheduled on 1
-INFO 2020-11-29 18:02:28.659: task 1_M1 from job 1 scheduled on 0
-INFO 2020-11-29 18:02:29.774: received update from 0 at ip: 127.0.0.1 port: 35420
-SUCCESS_TASK 2020-11-29 18:02:29.775: completed task 1_M1
-INFO 2020-11-29 18:02:30.691: received update from 1 at ip: 127.0.0.1 port: 35422
-SUCCESS_TASK 2020-11-29 18:02:30.692: completed task 1_M0
-INFO 2020-11-29 18:02:30.693: task 1_R0 from job 1 scheduled on 1
-INFO 2020-11-29 18:02:31.673: scheduling job: 2 recieved from ip: 127.0.0.1 port: 34016
-INFO 2020-11-29 18:02:31.674: task 2_M0 from job 2 scheduled on 0
-INFO 2020-11-29 18:02:31.694: received update from 1 at ip: 127.0.0.1 port: 35430
-SUCCESS_TASK 2020-11-29 18:02:31.694: completed task 0_M0
-INFO 2020-11-29 18:02:31.695: task 0_R0 from job 0 scheduled on 1
-INFO 2020-11-29 18:02:32.779: received update from 0 at ip: 127.0.0.1 port: 35434
-SUCCESS_TASK 2020-11-29 18:02:32.780: completed task 2_M0
-INFO 2020-11-29 18:02:32.781: task 2_R0 from job 2 scheduled on 0
-INFO 2020-11-29 18:02:32.996: scheduling job: 3 recieved from ip: 127.0.0.1 port: 34028
-INFO 2020-11-29 18:02:32.997: task 3_M0 from job 3 scheduled on 1
-INFO 2020-11-29 18:02:32.998: task 3_M1 from job 3 scheduled on 0
-INFO 2020-11-29 18:02:33.917: scheduling job: 4 recieved from ip: 127.0.0.1 port: 34034
-INFO 2020-11-29 18:02:33.918: task 4_M0 from job 4 scheduled on 1
-INFO 2020-11-29 18:02:33.919: task 4_M1 from job 4 scheduled on 0
-INFO 2020-11-29 18:02:33.919: task 4_M2 from job 4 scheduled on 1
-INFO 2020-11-29 18:02:33.920: task 4_M3 from job 4 scheduled on 2
-INFO 2020-11-29 18:02:34.092: scheduling job: 5 recieved from ip: 127.0.0.1 port: 34044
-INFO 2020-11-29 18:02:34.093: task 5_M0 from job 5 scheduled on 0
-INFO 2020-11-29 18:02:34.093: task 5_M1 from job 5 scheduled on 1
-INFO 2020-11-29 18:02:34.266: scheduling job: 6 recieved from ip: 127.0.0.1 port: 34050
-INFO 2020-11-29 18:02:34.267: task 6_M0 from job 6 scheduled on 2
-INFO 2020-11-29 18:02:34.267: task 6_M1 from job 6 scheduled on 0
-INFO 2020-11-29 18:02:34.268: task 6_M2 from job 6 scheduled on 1
-INFO 2020-11-29 18:02:34.328: scheduling job: 7 recieved from ip: 127.0.0.1 port: 34058
-INFO 2020-11-29 18:02:34.329: task 7_M0 from job 7 scheduled on 2
-INFO 2020-11-29 18:02:34.697: received update from 1 at ip: 127.0.0.1 port: 35472
-SUCCESS_TASK 2020-11-29 18:02:34.698: completed task 0_R0
-SUCCESS_JOB 2020-11-29 18:02:34.698: job 0 completed
-INFO 2020-11-29 18:02:35.700: received update from 1 at ip: 127.0.0.1 port: 35474
-SUCCESS_TASK 2020-11-29 18:02:35.701: completed task 1_R0
-SUCCESS_JOB 2020-11-29 18:02:35.701: job 1 completed
-SUCCESS_TASK 2020-11-29 18:02:35.702: completed task 3_M0
-SUCCESS_TASK 2020-11-29 18:02:35.702: completed task 4_M0
-SUCCESS_TASK 2020-11-29 18:02:35.703: completed task 5_M1
-INFO 2020-11-29 18:02:35.784: received update from 0 at ip: 127.0.0.1 port: 35476
-SUCCESS_TASK 2020-11-29 18:02:35.784: completed task 2_R0
-SUCCESS_JOB 2020-11-29 18:02:35.784: job 2 completed
-SUCCESS_TASK 2020-11-29 18:02:35.785: completed task 5_M0
-SUCCESS_TASK 2020-11-29 18:02:35.785: completed task 6_M1
-INFO 2020-11-29 18:02:35.786: task 5_R0 from job 5 scheduled on 1
-INFO 2020-11-29 18:02:35.786: task 5_R1 from job 5 scheduled on 1
-INFO 2020-11-29 18:02:36.347: scheduling job: 8 recieved from ip: 127.0.0.1 port: 34072
-INFO 2020-11-29 18:02:36.348: task 8_M0 from job 8 scheduled on 0
-INFO 2020-11-29 18:02:36.787: received update from 0 at ip: 127.0.0.1 port: 35486
-SUCCESS_TASK 2020-11-29 18:02:36.788: completed task 4_M1
-INFO 2020-11-29 18:02:37.268: scheduling job: 9 recieved from ip: 127.0.0.1 port: 34078
-INFO 2020-11-29 18:02:37.269: task 9_M0 from job 9 scheduled on 0
-INFO 2020-11-29 18:02:37.270: task 9_M1 from job 9 scheduled on 1
-INFO 2020-11-29 18:02:37.641: received update from 2 at ip: 127.0.0.1 port: 35494
-SUCCESS_TASK 2020-11-29 18:02:37.642: completed task 4_M3
-SUCCESS_TASK 2020-11-29 18:02:37.642: completed task 6_M0
-SUCCESS_TASK 2020-11-29 18:02:37.643: completed task 7_M0
-INFO 2020-11-29 18:02:37.643: task 7_R0 from job 7 scheduled on 2
-INFO 2020-11-29 18:02:37.644: task 7_R1 from job 7 scheduled on 0
-INFO 2020-11-29 18:02:37.703: received update from 1 at ip: 127.0.0.1 port: 35500
-SUCCESS_TASK 2020-11-29 18:02:37.704: completed task 5_R1
-INFO 2020-11-29 18:02:37.789: received update from 0 at ip: 127.0.0.1 port: 35502
-SUCCESS_TASK 2020-11-29 18:02:37.790: completed task 3_M1
-INFO 2020-11-29 18:02:37.790: task 3_R0 from job 3 scheduled on 1
-INFO 2020-11-29 18:02:38.504: scheduling job: 10 recieved from ip: 127.0.0.1 port: 34096
-INFO 2020-11-29 18:02:38.506: task 10_M0 from job 10 scheduled on 0
-INFO 2020-11-29 18:02:38.506: task 10_M1 from job 10 scheduled on 1
-INFO 2020-11-29 18:02:38.508: task 10_M2 from job 10 scheduled on 2
-INFO 2020-11-29 18:02:38.535: scheduling job: 11 recieved from ip: 127.0.0.1 port: 34104
-INFO 2020-11-29 18:02:38.536: task 11_M0 from job 11 scheduled on 0
-INFO 2020-11-29 18:02:38.706: received update from 1 at ip: 127.0.0.1 port: 35518
-SUCCESS_TASK 2020-11-29 18:02:38.707: completed task 4_M2
-SUCCESS_TASK 2020-11-29 18:02:38.708: completed task 6_M2
-INFO 2020-11-29 18:02:38.709: task 4_R0 from job 4 scheduled on 1
-INFO 2020-11-29 18:02:38.710: task 4_R1 from job 4 scheduled on 1
-INFO 2020-11-29 18:02:38.710: task 6_R0 from job 6 scheduled on 1
-INFO 2020-11-29 18:02:38.711: task 6_R1 from job 6 scheduled on 2
-INFO 2020-11-29 18:02:38.790: received update from 0 at ip: 127.0.0.1 port: 35528
-SUCCESS_TASK 2020-11-29 18:02:38.790: completed task 7_R1
-INFO 2020-11-29 18:02:39.794: received update from 0 at ip: 127.0.0.1 port: 35530
-SUCCESS_TASK 2020-11-29 18:02:39.795: completed task 8_M0
-INFO 2020-11-29 18:02:39.796: task 8_R0 from job 8 scheduled on 0
-INFO 2020-11-29 18:02:40.646: received update from 2 at ip: 127.0.0.1 port: 35534
-SUCCESS_TASK 2020-11-29 18:02:40.647: completed task 7_R0
-SUCCESS_JOB 2020-11-29 18:02:40.647: job 7 completed
-SUCCESS_TASK 2020-11-29 18:02:40.647: completed task 10_M2
-INFO 2020-11-29 18:02:40.708: received update from 1 at ip: 127.0.0.1 port: 35536
-SUCCESS_TASK 2020-11-29 18:02:40.708: completed task 5_R0
-SUCCESS_JOB 2020-11-29 18:02:40.708: job 5 completed
-SUCCESS_TASK 2020-11-29 18:02:40.708: completed task 9_M1
-SUCCESS_TASK 2020-11-29 18:02:40.708: completed task 3_R0
-SUCCESS_JOB 2020-11-29 18:02:40.709: job 3 completed
-SUCCESS_TASK 2020-11-29 18:02:40.709: completed task 6_R0
-INFO 2020-11-29 18:02:40.796: received update from 0 at ip: 127.0.0.1 port: 35538
-SUCCESS_TASK 2020-11-29 18:02:40.796: completed task 11_M0
-INFO 2020-11-29 18:02:40.797: task 11_R0 from job 11 scheduled on 1
-INFO 2020-11-29 18:02:41.712: received update from 1 at ip: 127.0.0.1 port: 35542
-SUCCESS_TASK 2020-11-29 18:02:41.713: completed task 10_M1
-SUCCESS_TASK 2020-11-29 18:02:41.713: completed task 4_R1
-INFO 2020-11-29 18:02:41.798: received update from 0 at ip: 127.0.0.1 port: 35544
-SUCCESS_TASK 2020-11-29 18:02:41.799: completed task 9_M0
-SUCCESS_TASK 2020-11-29 18:02:41.799: completed task 10_M0
-SUCCESS_TASK 2020-11-29 18:02:41.799: completed task 8_R0
-SUCCESS_JOB 2020-11-29 18:02:41.800: job 8 completed
-INFO 2020-11-29 18:02:41.800: task 9_R0 from job 9 scheduled on 0
-INFO 2020-11-29 18:02:41.800: task 10_R0 from job 10 scheduled on 1
-INFO 2020-11-29 18:02:42.044: scheduling job: 12 recieved from ip: 127.0.0.1 port: 34140
-INFO 2020-11-29 18:02:42.045: task 12_M0 from job 12 scheduled on 0
-INFO 2020-11-29 18:02:42.046: task 12_M1 from job 12 scheduled on 1
-INFO 2020-11-29 18:02:42.047: task 12_M2 from job 12 scheduled on 0
-INFO 2020-11-29 18:02:42.048: task 12_M3 from job 12 scheduled on 1
-INFO 2020-11-29 18:02:42.715: received update from 1 at ip: 127.0.0.1 port: 35560
-SUCCESS_TASK 2020-11-29 18:02:42.716: completed task 4_R0
-SUCCESS_JOB 2020-11-29 18:02:42.716: job 4 completed
-INFO 2020-11-29 18:02:43.650: received update from 2 at ip: 127.0.0.1 port: 35562
-SUCCESS_TASK 2020-11-29 18:02:43.651: completed task 6_R1
-SUCCESS_JOB 2020-11-29 18:02:43.651: job 6 completed
-INFO 2020-11-29 18:02:43.717: received update from 1 at ip: 127.0.0.1 port: 35564
-SUCCESS_TASK 2020-11-29 18:02:43.717: completed task 11_R0
-SUCCESS_JOB 2020-11-29 18:02:43.717: job 11 completed
-SUCCESS_TASK 2020-11-29 18:02:43.718: completed task 12_M3
-INFO 2020-11-29 18:02:43.839: scheduling job: 13 recieved from ip: 127.0.0.1 port: 34156
-INFO 2020-11-29 18:02:43.839: task 13_M0 from job 13 scheduled on 1
-INFO 2020-11-29 18:02:43.839: task 13_M1 from job 13 scheduled on 1
-INFO 2020-11-29 18:02:43.840: task 13_M2 from job 13 scheduled on 1
-INFO 2020-11-29 18:02:44.083: scheduling job: 14 recieved from ip: 127.0.0.1 port: 34164
-INFO 2020-11-29 18:02:44.084: task 14_M0 from job 14 scheduled on 2
-INFO 2020-11-29 18:02:44.085: task 14_M1 from job 14 scheduled on 0
-INFO 2020-11-29 18:02:44.086: task 14_M2 from job 14 scheduled on 1
-INFO 2020-11-29 18:02:44.087: task 14_M3 from job 14 scheduled on 2
-INFO 2020-11-29 18:02:44.288: scheduling job: 15 recieved from ip: 127.0.0.1 port: 34174
-INFO 2020-11-29 18:02:44.289: task 15_M0 from job 15 scheduled on 0
-INFO 2020-11-29 18:02:44.290: task 15_M1 from job 15 scheduled on 1
-INFO 2020-11-29 18:02:44.290: task 15_M2 from job 15 scheduled on 2
-INFO 2020-11-29 18:02:44.492: scheduling job: 16 recieved from ip: 127.0.0.1 port: 34182
-INFO 2020-11-29 18:02:44.719: received update from 1 at ip: 127.0.0.1 port: 35594
-SUCCESS_TASK 2020-11-29 18:02:44.720: completed task 12_M1
-INFO 2020-11-29 18:02:44.860: scheduling job: 17 recieved from ip: 127.0.0.1 port: 34186
-INFO 2020-11-29 18:02:45.293: task 15_M3 from job 15 scheduled on 1
-INFO 2020-11-29 18:02:45.608: scheduling job: 18 recieved from ip: 127.0.0.1 port: 34190
-INFO 2020-11-29 18:02:45.722: received update from 1 at ip: 127.0.0.1 port: 35602
-SUCCESS_TASK 2020-11-29 18:02:45.722: completed task 10_R0
-SUCCESS_JOB 2020-11-29 18:02:45.723: job 10 completed
-SUCCESS_TASK 2020-11-29 18:02:45.723: completed task 13_M1
-INFO 2020-11-29 18:02:45.803: received update from 0 at ip: 127.0.0.1 port: 35604
-SUCCESS_TASK 2020-11-29 18:02:45.804: completed task 12_M0
-SUCCESS_TASK 2020-11-29 18:02:45.804: completed task 12_M2
-INFO 2020-11-29 18:02:46.180: scheduling job: 19 recieved from ip: 127.0.0.1 port: 34196
-INFO 2020-11-29 18:02:46.294: task 16_M0 from job 16 scheduled on 0
-INFO 2020-11-29 18:02:46.295: task 17_M0 from job 17 scheduled on 1
-INFO 2020-11-29 18:02:46.296: task 18_M0 from job 18 scheduled on 0
-INFO 2020-11-29 18:02:46.297: task 12_R0 from job 12 scheduled on 1
-INFO 2020-11-29 18:02:46.654: received update from 2 at ip: 127.0.0.1 port: 35616
-SUCCESS_TASK 2020-11-29 18:02:46.654: completed task 14_M3
-SUCCESS_TASK 2020-11-29 18:02:46.654: completed task 15_M2
-INFO 2020-11-29 18:02:46.723: received update from 1 at ip: 127.0.0.1 port: 35618
-SUCCESS_TASK 2020-11-29 18:02:46.723: completed task 13_M2
-SUCCESS_TASK 2020-11-29 18:02:46.723: completed task 15_M1
-INFO 2020-11-29 18:02:46.805: received update from 0 at ip: 127.0.0.1 port: 35620
-SUCCESS_TASK 2020-11-29 18:02:46.806: completed task 9_R0
-SUCCESS_JOB 2020-11-29 18:02:46.806: job 9 completed
-SUCCESS_TASK 2020-11-29 18:02:46.806: completed task 14_M1
-INFO 2020-11-29 18:02:47.299: task 12_R1 from job 12 scheduled on 0
-INFO 2020-11-29 18:02:47.300: task 19_M0 from job 19 scheduled on 1
-INFO 2020-11-29 18:02:47.726: received update from 1 at ip: 127.0.0.1 port: 35626
-SUCCESS_TASK 2020-11-29 18:02:47.726: completed task 13_M0
-SUCCESS_TASK 2020-11-29 18:02:47.727: completed task 14_M2
-INFO 2020-11-29 18:02:47.728: task 13_R0 from job 13 scheduled on 1
-INFO 2020-11-29 18:02:47.728: task 13_R1 from job 13 scheduled on 1
-INFO 2020-11-29 18:02:47.806: received update from 0 at ip: 127.0.0.1 port: 35632
-SUCCESS_TASK 2020-11-29 18:02:47.807: completed task 15_M0
-INFO 2020-11-29 18:02:48.658: received update from 2 at ip: 127.0.0.1 port: 35634
-SUCCESS_TASK 2020-11-29 18:02:48.659: completed task 14_M0
-INFO 2020-11-29 18:02:48.660: task 14_R0 from job 14 scheduled on 2
-INFO 2020-11-29 18:02:48.661: task 14_R1 from job 14 scheduled on 0
-INFO 2020-11-29 18:02:48.728: received update from 1 at ip: 127.0.0.1 port: 35640
-SUCCESS_TASK 2020-11-29 18:02:48.728: completed task 12_R0
-INFO 2020-11-29 18:02:48.809: received update from 0 at ip: 127.0.0.1 port: 35642
-SUCCESS_TASK 2020-11-29 18:02:48.810: completed task 16_M0
-SUCCESS_TASK 2020-11-29 18:02:48.810: completed task 12_R1
-SUCCESS_JOB 2020-11-29 18:02:48.811: job 12 completed
-INFO 2020-11-29 18:02:48.812: task 16_R0 from job 16 scheduled on 0
-INFO 2020-11-29 18:02:49.731: received update from 1 at ip: 127.0.0.1 port: 35646
-SUCCESS_TASK 2020-11-29 18:02:49.732: completed task 15_M3
-INFO 2020-11-29 18:02:49.733: task 15_R0 from job 15 scheduled on 1
-INFO 2020-11-29 18:02:49.734: task 15_R1 from job 15 scheduled on 0
-INFO 2020-11-29 18:02:49.811: received update from 0 at ip: 127.0.0.1 port: 35652
-SUCCESS_TASK 2020-11-29 18:02:49.811: completed task 18_M0
-INFO 2020-11-29 18:02:49.812: task 18_R0 from job 18 scheduled on 0
-INFO 2020-11-29 18:02:50.734: received update from 1 at ip: 127.0.0.1 port: 35656
-SUCCESS_TASK 2020-11-29 18:02:50.734: completed task 17_M0
-SUCCESS_TASK 2020-11-29 18:02:50.735: completed task 13_R1
-INFO 2020-11-29 18:02:50.736: task 17_R0 from job 17 scheduled on 1
-INFO 2020-11-29 18:02:50.736: task 17_R1 from job 17 scheduled on 1
-INFO 2020-11-29 18:02:50.812: received update from 0 at ip: 127.0.0.1 port: 35662
-SUCCESS_TASK 2020-11-29 18:02:50.812: completed task 15_R1
-INFO 2020-11-29 18:02:51.662: received update from 2 at ip: 127.0.0.1 port: 35664
-SUCCESS_TASK 2020-11-29 18:02:51.662: completed task 14_R0
-INFO 2020-11-29 18:02:51.737: received update from 1 at ip: 127.0.0.1 port: 35666
-SUCCESS_TASK 2020-11-29 18:02:51.737: completed task 19_M0
-SUCCESS_TASK 2020-11-29 18:02:51.738: completed task 13_R0
-SUCCESS_JOB 2020-11-29 18:02:51.738: job 13 completed
-SUCCESS_TASK 2020-11-29 18:02:51.738: completed task 15_R0
-SUCCESS_JOB 2020-11-29 18:02:51.738: job 15 completed
-INFO 2020-11-29 18:02:51.739: task 19_R0 from job 19 scheduled on 1
-INFO 2020-11-29 18:02:51.740: task 19_R1 from job 19 scheduled on 1
-INFO 2020-11-29 18:02:51.815: received update from 0 at ip: 127.0.0.1 port: 35672
-SUCCESS_TASK 2020-11-29 18:02:51.816: completed task 14_R1
-SUCCESS_JOB 2020-11-29 18:02:51.816: job 14 completed
-INFO 2020-11-29 18:02:53.818: received update from 0 at ip: 127.0.0.1 port: 35674
-SUCCESS_TASK 2020-11-29 18:02:53.818: completed task 16_R0
-SUCCESS_JOB 2020-11-29 18:02:53.818: job 16 completed
-SUCCESS_TASK 2020-11-29 18:02:53.818: completed task 18_R0
-SUCCESS_JOB 2020-11-29 18:02:53.819: job 18 completed
-INFO 2020-11-29 18:02:54.742: received update from 1 at ip: 127.0.0.1 port: 35676
-SUCCESS_TASK 2020-11-29 18:02:54.742: completed task 17_R1
-SUCCESS_TASK 2020-11-29 18:02:54.743: completed task 19_R0
-INFO 2020-11-29 18:02:55.744: received update from 1 at ip: 127.0.0.1 port: 35678
-SUCCESS_TASK 2020-11-29 18:02:55.745: completed task 17_R0
-SUCCESS_JOB 2020-11-29 18:02:55.745: job 17 completed
-INFO 2020-11-29 18:02:56.747: received update from 1 at ip: 127.0.0.1 port: 35680
-SUCCESS_TASK 2020-11-29 18:02:56.747: completed task 19_R1
-SUCCESS_JOB 2020-11-29 18:02:56.748: job 19 completed
-INFO 2020-11-29 18:03:05.708: shutting down listeners
+INFO 2020-11-30 00:49:23.364: scheduling policy set to LL
+INFO 2020-11-30 00:49:23.368: job listener spawn successful
+INFO 2020-11-30 00:49:23.368: update listener spawn successful
+INFO 2020-11-30 00:49:23.369: job queue spawn successful
+INFO 2020-11-30 00:49:23.370: update queue spawn successful
+INFO 2020-11-30 00:49:29.113: scheduling job: 0 recieved from ip: 127.0.0.1 port: 39160
+INFO 2020-11-30 00:49:29.113: task 0_M0 from job 0 scheduled on 1
+INFO 2020-11-30 00:49:29.587: scheduling job: 1 recieved from ip: 127.0.0.1 port: 39164
+INFO 2020-11-30 00:49:29.588: task 1_M0 from job 1 scheduled on 1
+INFO 2020-11-30 00:49:29.589: task 1_M1 from job 1 scheduled on 0
+INFO 2020-11-30 00:49:30.659: received update from 0 at ip: 127.0.0.1 port: 40580
+SUCCESS_TASK 2020-11-30 00:49:30.660: completed task 1_M1
+INFO 2020-11-30 00:49:30.933: received update from 1 at ip: 127.0.0.1 port: 40582
+SUCCESS_TASK 2020-11-30 00:49:30.933: completed task 1_M0
+INFO 2020-11-30 00:49:30.934: task 1_R0 from job 1 scheduled on 1
+INFO 2020-11-30 00:49:32.600: scheduling job: 2 recieved from ip: 127.0.0.1 port: 39176
+INFO 2020-11-30 00:49:32.601: task 2_M0 from job 2 scheduled on 0
+INFO 2020-11-30 00:49:33.668: received update from 0 at ip: 127.0.0.1 port: 40590
+SUCCESS_TASK 2020-11-30 00:49:33.669: completed task 2_M0
+INFO 2020-11-30 00:49:33.670: task 2_R0 from job 2 scheduled on 0
+INFO 2020-11-30 00:49:33.920: scheduling job: 3 recieved from ip: 127.0.0.1 port: 39184
+INFO 2020-11-30 00:49:33.921: task 3_M0 from job 3 scheduled on 1
+INFO 2020-11-30 00:49:33.921: task 3_M1 from job 3 scheduled on 0
+INFO 2020-11-30 00:49:33.934: received update from 1 at ip: 127.0.0.1 port: 40600
+SUCCESS_TASK 2020-11-30 00:49:33.934: completed task 0_M0
+INFO 2020-11-30 00:49:33.935: task 0_R0 from job 0 scheduled on 1
+INFO 2020-11-30 00:49:34.843: scheduling job: 4 recieved from ip: 127.0.0.1 port: 39194
+INFO 2020-11-30 00:49:34.844: task 4_M0 from job 4 scheduled on 1
+INFO 2020-11-30 00:49:34.844: task 4_M1 from job 4 scheduled on 0
+INFO 2020-11-30 00:49:34.845: task 4_M2 from job 4 scheduled on 1
+INFO 2020-11-30 00:49:34.846: task 4_M3 from job 4 scheduled on 2
+INFO 2020-11-30 00:49:35.015: scheduling job: 5 recieved from ip: 127.0.0.1 port: 39204
+INFO 2020-11-30 00:49:35.015: task 5_M0 from job 5 scheduled on 0
+INFO 2020-11-30 00:49:35.016: task 5_M1 from job 5 scheduled on 1
+INFO 2020-11-30 00:49:35.188: scheduling job: 6 recieved from ip: 127.0.0.1 port: 39210
+INFO 2020-11-30 00:49:35.188: task 6_M0 from job 6 scheduled on 2
+INFO 2020-11-30 00:49:35.189: task 6_M1 from job 6 scheduled on 0
+INFO 2020-11-30 00:49:35.189: task 6_M2 from job 6 scheduled on 1
+INFO 2020-11-30 00:49:35.250: scheduling job: 7 recieved from ip: 127.0.0.1 port: 39218
+INFO 2020-11-30 00:49:35.251: task 7_M0 from job 7 scheduled on 2
+INFO 2020-11-30 00:49:36.668: received update from 0 at ip: 127.0.0.1 port: 40632
+SUCCESS_TASK 2020-11-30 00:49:36.669: completed task 2_R0
+SUCCESS_JOB 2020-11-30 00:49:36.669: job 2 completed
+SUCCESS_TASK 2020-11-30 00:49:36.670: completed task 5_M0
+SUCCESS_TASK 2020-11-30 00:49:36.670: completed task 6_M1
+INFO 2020-11-30 00:49:36.941: received update from 1 at ip: 127.0.0.1 port: 40634
+SUCCESS_TASK 2020-11-30 00:49:36.942: completed task 1_R0
+SUCCESS_JOB 2020-11-30 00:49:36.942: job 1 completed
+SUCCESS_TASK 2020-11-30 00:49:36.943: completed task 3_M0
+SUCCESS_TASK 2020-11-30 00:49:36.945: completed task 4_M0
+SUCCESS_TASK 2020-11-30 00:49:36.946: completed task 0_R0
+SUCCESS_JOB 2020-11-30 00:49:36.946: job 0 completed
+SUCCESS_TASK 2020-11-30 00:49:36.947: completed task 5_M1
+INFO 2020-11-30 00:49:36.952: task 5_R0 from job 5 scheduled on 1
+INFO 2020-11-30 00:49:36.952: task 5_R1 from job 5 scheduled on 1
+INFO 2020-11-30 00:49:37.263: scheduling job: 8 recieved from ip: 127.0.0.1 port: 39230
+INFO 2020-11-30 00:49:37.264: task 8_M0 from job 8 scheduled on 0
+INFO 2020-11-30 00:49:37.671: received update from 0 at ip: 127.0.0.1 port: 40644
+SUCCESS_TASK 2020-11-30 00:49:37.672: completed task 4_M1
+INFO 2020-11-30 00:49:38.187: scheduling job: 9 recieved from ip: 127.0.0.1 port: 39236
+INFO 2020-11-30 00:49:38.189: task 9_M0 from job 9 scheduled on 0
+INFO 2020-11-30 00:49:38.190: task 9_M1 from job 9 scheduled on 1
+INFO 2020-11-30 00:49:38.381: received update from 2 at ip: 127.0.0.1 port: 40652
+SUCCESS_TASK 2020-11-30 00:49:38.381: completed task 4_M3
+SUCCESS_TASK 2020-11-30 00:49:38.381: completed task 6_M0
+SUCCESS_TASK 2020-11-30 00:49:38.382: completed task 7_M0
+INFO 2020-11-30 00:49:38.382: task 7_R0 from job 7 scheduled on 2
+INFO 2020-11-30 00:49:38.382: task 7_R1 from job 7 scheduled on 0
+INFO 2020-11-30 00:49:38.673: received update from 0 at ip: 127.0.0.1 port: 40658
+SUCCESS_TASK 2020-11-30 00:49:38.673: completed task 3_M1
+INFO 2020-11-30 00:49:38.674: task 3_R0 from job 3 scheduled on 0
+INFO 2020-11-30 00:49:38.944: received update from 1 at ip: 127.0.0.1 port: 40662
+SUCCESS_TASK 2020-11-30 00:49:38.945: completed task 4_M2
+SUCCESS_TASK 2020-11-30 00:49:38.946: completed task 5_R1
+INFO 2020-11-30 00:49:38.947: task 4_R0 from job 4 scheduled on 1
+INFO 2020-11-30 00:49:38.947: task 4_R1 from job 4 scheduled on 1
+INFO 2020-11-30 00:49:39.427: scheduling job: 10 recieved from ip: 127.0.0.1 port: 39258
+INFO 2020-11-30 00:49:39.428: task 10_M0 from job 10 scheduled on 1
+INFO 2020-11-30 00:49:39.428: task 10_M1 from job 10 scheduled on 2
+INFO 2020-11-30 00:49:39.429: task 10_M2 from job 10 scheduled on 0
+INFO 2020-11-30 00:49:39.452: scheduling job: 11 recieved from ip: 127.0.0.1 port: 39266
+INFO 2020-11-30 00:49:39.453: task 11_M0 from job 11 scheduled on 1
+INFO 2020-11-30 00:49:39.676: received update from 0 at ip: 127.0.0.1 port: 40680
+SUCCESS_TASK 2020-11-30 00:49:39.676: completed task 7_R1
+INFO 2020-11-30 00:49:39.953: received update from 1 at ip: 127.0.0.1 port: 40682
+SUCCESS_TASK 2020-11-30 00:49:39.954: completed task 6_M2
+INFO 2020-11-30 00:49:39.955: task 6_R0 from job 6 scheduled on 0
+INFO 2020-11-30 00:49:39.957: task 6_R1 from job 6 scheduled on 1
+INFO 2020-11-30 00:49:40.677: received update from 0 at ip: 127.0.0.1 port: 40688
+SUCCESS_TASK 2020-11-30 00:49:40.678: completed task 8_M0
+INFO 2020-11-30 00:49:40.679: task 8_R0 from job 8 scheduled on 0
+INFO 2020-11-30 00:49:41.389: received update from 2 at ip: 127.0.0.1 port: 40692
+SUCCESS_TASK 2020-11-30 00:49:41.390: completed task 7_R0
+SUCCESS_JOB 2020-11-30 00:49:41.390: job 7 completed
+INFO 2020-11-30 00:49:41.681: received update from 0 at ip: 127.0.0.1 port: 40694
+SUCCESS_TASK 2020-11-30 00:49:41.681: completed task 3_R0
+SUCCESS_JOB 2020-11-30 00:49:41.682: job 3 completed
+SUCCESS_TASK 2020-11-30 00:49:41.683: completed task 10_M2
+SUCCESS_TASK 2020-11-30 00:49:41.683: completed task 6_R0
+INFO 2020-11-30 00:49:41.955: received update from 1 at ip: 127.0.0.1 port: 40696
+SUCCESS_TASK 2020-11-30 00:49:41.955: completed task 5_R0
+SUCCESS_JOB 2020-11-30 00:49:41.955: job 5 completed
+SUCCESS_TASK 2020-11-30 00:49:41.956: completed task 9_M1
+SUCCESS_TASK 2020-11-30 00:49:41.956: completed task 4_R1
+SUCCESS_TASK 2020-11-30 00:49:41.957: completed task 11_M0
+INFO 2020-11-30 00:49:41.957: task 11_R0 from job 11 scheduled on 1
+INFO 2020-11-30 00:49:42.683: received update from 0 at ip: 127.0.0.1 port: 40700
+SUCCESS_TASK 2020-11-30 00:49:42.683: completed task 9_M0
+SUCCESS_TASK 2020-11-30 00:49:42.684: completed task 8_R0
+SUCCESS_JOB 2020-11-30 00:49:42.684: job 8 completed
+INFO 2020-11-30 00:49:42.685: task 9_R0 from job 9 scheduled on 0
+INFO 2020-11-30 00:49:42.962: received update from 1 at ip: 127.0.0.1 port: 40704
+SUCCESS_TASK 2020-11-30 00:49:42.963: completed task 4_R0
+SUCCESS_JOB 2020-11-30 00:49:42.964: job 4 completed
+INFO 2020-11-30 00:49:42.965: scheduling job: 12 recieved from ip: 127.0.0.1 port: 39296
+SUCCESS_TASK 2020-11-30 00:49:42.965: completed task 10_M0
+INFO 2020-11-30 00:49:42.966: task 12_M0 from job 12 scheduled on 1
+INFO 2020-11-30 00:49:42.967: task 12_M1 from job 12 scheduled on 0
+INFO 2020-11-30 00:49:42.968: task 12_M2 from job 12 scheduled on 1
+INFO 2020-11-30 00:49:42.968: task 12_M3 from job 12 scheduled on 0
+INFO 2020-11-30 00:49:43.389: received update from 2 at ip: 127.0.0.1 port: 40716
+SUCCESS_TASK 2020-11-30 00:49:43.389: completed task 10_M1
+INFO 2020-11-30 00:49:43.390: task 10_R0 from job 10 scheduled on 1
+INFO 2020-11-30 00:49:44.685: received update from 0 at ip: 127.0.0.1 port: 40720
+SUCCESS_TASK 2020-11-30 00:49:44.686: completed task 12_M3
+INFO 2020-11-30 00:49:44.753: scheduling job: 13 recieved from ip: 127.0.0.1 port: 39312
+INFO 2020-11-30 00:49:44.754: task 13_M0 from job 13 scheduled on 0
+INFO 2020-11-30 00:49:44.755: task 13_M1 from job 13 scheduled on 2
+INFO 2020-11-30 00:49:44.756: task 13_M2 from job 13 scheduled on 0
+INFO 2020-11-30 00:49:44.962: received update from 1 at ip: 127.0.0.1 port: 40730
+SUCCESS_TASK 2020-11-30 00:49:44.963: completed task 6_R1
+SUCCESS_JOB 2020-11-30 00:49:44.963: job 6 completed
+SUCCESS_TASK 2020-11-30 00:49:44.963: completed task 11_R0
+SUCCESS_JOB 2020-11-30 00:49:44.964: job 11 completed
+INFO 2020-11-30 00:49:44.998: scheduling job: 14 recieved from ip: 127.0.0.1 port: 39322
+INFO 2020-11-30 00:49:44.999: task 14_M0 from job 14 scheduled on 1
+INFO 2020-11-30 00:49:45.000: task 14_M1 from job 14 scheduled on 1
+INFO 2020-11-30 00:49:45.001: task 14_M2 from job 14 scheduled on 1
+INFO 2020-11-30 00:49:45.001: task 14_M3 from job 14 scheduled on 2
+INFO 2020-11-30 00:49:45.203: scheduling job: 15 recieved from ip: 127.0.0.1 port: 39332
+INFO 2020-11-30 00:49:45.204: task 15_M0 from job 15 scheduled on 0
+INFO 2020-11-30 00:49:45.205: task 15_M1 from job 15 scheduled on 1
+INFO 2020-11-30 00:49:45.206: task 15_M2 from job 15 scheduled on 2
+INFO 2020-11-30 00:49:45.406: scheduling job: 16 recieved from ip: 127.0.0.1 port: 39340
+INFO 2020-11-30 00:49:45.688: received update from 0 at ip: 127.0.0.1 port: 40752
+SUCCESS_TASK 2020-11-30 00:49:45.688: completed task 12_M1
+INFO 2020-11-30 00:49:45.775: scheduling job: 17 recieved from ip: 127.0.0.1 port: 39344
+INFO 2020-11-30 00:49:46.207: task 15_M3 from job 15 scheduled on 0
+INFO 2020-11-30 00:49:46.392: received update from 2 at ip: 127.0.0.1 port: 40758
+SUCCESS_TASK 2020-11-30 00:49:46.393: completed task 13_M1
+INFO 2020-11-30 00:49:46.527: scheduling job: 18 recieved from ip: 127.0.0.1 port: 39350
+INFO 2020-11-30 00:49:46.965: received update from 1 at ip: 127.0.0.1 port: 40762
+SUCCESS_TASK 2020-11-30 00:49:46.966: completed task 12_M0
+SUCCESS_TASK 2020-11-30 00:49:46.966: completed task 12_M2
+SUCCESS_TASK 2020-11-30 00:49:46.966: completed task 10_R0
+SUCCESS_JOB 2020-11-30 00:49:46.967: job 10 completed
+INFO 2020-11-30 00:49:47.096: scheduling job: 19 recieved from ip: 127.0.0.1 port: 39354
+INFO 2020-11-30 00:49:47.209: task 16_M0 from job 16 scheduled on 1
+INFO 2020-11-30 00:49:47.210: task 17_M0 from job 17 scheduled on 1
+INFO 2020-11-30 00:49:47.210: task 18_M0 from job 18 scheduled on 1
+INFO 2020-11-30 00:49:47.210: task 12_R0 from job 12 scheduled on 2
+INFO 2020-11-30 00:49:47.395: received update from 2 at ip: 127.0.0.1 port: 40774
+SUCCESS_TASK 2020-11-30 00:49:47.395: completed task 14_M3
+SUCCESS_TASK 2020-11-30 00:49:47.396: completed task 15_M2
+INFO 2020-11-30 00:49:47.442: scheduling job: 20 recieved from ip: 127.0.0.1 port: 39366
+INFO 2020-11-30 00:49:47.693: received update from 0 at ip: 127.0.0.1 port: 40778
+SUCCESS_TASK 2020-11-30 00:49:47.693: completed task 9_R0
+SUCCESS_JOB 2020-11-30 00:49:47.694: job 9 completed
+SUCCESS_TASK 2020-11-30 00:49:47.694: completed task 13_M2
+INFO 2020-11-30 00:49:47.968: received update from 1 at ip: 127.0.0.1 port: 40780
+SUCCESS_TASK 2020-11-30 00:49:47.968: completed task 14_M1
+SUCCESS_TASK 2020-11-30 00:49:47.969: completed task 15_M1
+INFO 2020-11-30 00:49:48.212: task 12_R1 from job 12 scheduled on 0
+INFO 2020-11-30 00:49:48.212: task 19_M0 from job 19 scheduled on 1
+INFO 2020-11-30 00:49:48.215: task 20_M0 from job 20 scheduled on 2
+INFO 2020-11-30 00:49:48.391: scheduling job: 21 recieved from ip: 127.0.0.1 port: 39378
+INFO 2020-11-30 00:49:48.392: task 21_M0 from job 21 scheduled on 0
+INFO 2020-11-30 00:49:48.392: task 21_M1 from job 21 scheduled on 1
+INFO 2020-11-30 00:49:48.544: scheduling job: 22 recieved from ip: 127.0.0.1 port: 39384
+INFO 2020-11-30 00:49:48.545: task 22_M0 from job 22 scheduled on 2
+INFO 2020-11-30 00:49:48.695: received update from 0 at ip: 127.0.0.1 port: 40798
+SUCCESS_TASK 2020-11-30 00:49:48.696: completed task 13_M0
+SUCCESS_TASK 2020-11-30 00:49:48.697: completed task 15_M0
+INFO 2020-11-30 00:49:48.901: scheduling job: 23 recieved from ip: 127.0.0.1 port: 39390
+INFO 2020-11-30 00:49:48.976: received update from 1 at ip: 127.0.0.1 port: 40802
+SUCCESS_TASK 2020-11-30 00:49:48.977: completed task 14_M2
+INFO 2020-11-30 00:49:49.358: scheduling job: 24 recieved from ip: 127.0.0.1 port: 39394
+INFO 2020-11-30 00:49:49.399: received update from 2 at ip: 127.0.0.1 port: 40806
+SUCCESS_TASK 2020-11-30 00:49:49.400: completed task 12_R0
+INFO 2020-11-30 00:49:49.546: task 22_M1 from job 22 scheduled on 0
+INFO 2020-11-30 00:49:49.548: task 22_M2 from job 22 scheduled on 0
+INFO 2020-11-30 00:49:49.552: task 13_R0 from job 13 scheduled on 1
+INFO 2020-11-30 00:49:49.553: task 13_R1 from job 13 scheduled on 2
+INFO 2020-11-30 00:49:49.698: received update from 0 at ip: 127.0.0.1 port: 40816
+SUCCESS_TASK 2020-11-30 00:49:49.699: completed task 12_R1
+SUCCESS_JOB 2020-11-30 00:49:49.699: job 12 completed
+INFO 2020-11-30 00:49:49.971: scheduling job: 25 recieved from ip: 127.0.0.1 port: 39408
+INFO 2020-11-30 00:49:49.973: received update from 1 at ip: 127.0.0.1 port: 40820
+SUCCESS_TASK 2020-11-30 00:49:49.974: completed task 14_M0
+SUCCESS_TASK 2020-11-30 00:49:49.975: completed task 16_M0
+INFO 2020-11-30 00:49:50.401: received update from 2 at ip: 127.0.0.1 port: 40822
+SUCCESS_TASK 2020-11-30 00:49:50.402: completed task 20_M0
+SUCCESS_TASK 2020-11-30 00:49:50.402: completed task 22_M0
+INFO 2020-11-30 00:49:50.555: task 23_M0 from job 23 scheduled on 1
+INFO 2020-11-30 00:49:50.555: task 24_M0 from job 24 scheduled on 2
+INFO 2020-11-30 00:49:50.558: task 24_M1 from job 24 scheduled on 0
+INFO 2020-11-30 00:49:50.561: task 24_M2 from job 24 scheduled on 1
+INFO 2020-11-30 00:49:50.562: task 24_M3 from job 24 scheduled on 2
+INFO 2020-11-30 00:49:50.701: received update from 0 at ip: 127.0.0.1 port: 40834
+SUCCESS_TASK 2020-11-30 00:49:50.702: completed task 15_M3
+SUCCESS_TASK 2020-11-30 00:49:50.702: completed task 22_M1
+INFO 2020-11-30 00:49:50.977: received update from 1 at ip: 127.0.0.1 port: 40836
+SUCCESS_TASK 2020-11-30 00:49:50.978: completed task 18_M0
+SUCCESS_TASK 2020-11-30 00:49:50.978: completed task 21_M1
+INFO 2020-11-30 00:49:51.516: scheduling job: 26 recieved from ip: 127.0.0.1 port: 39428
+INFO 2020-11-30 00:49:51.565: task 25_M0 from job 25 scheduled on 0
+INFO 2020-11-30 00:49:51.566: task 25_M1 from job 25 scheduled on 1
+INFO 2020-11-30 00:49:51.567: task 25_M2 from job 25 scheduled on 0
+INFO 2020-11-30 00:49:51.567: task 25_M3 from job 25 scheduled on 1
+INFO 2020-11-30 00:49:51.703: received update from 0 at ip: 127.0.0.1 port: 40848
+SUCCESS_TASK 2020-11-30 00:49:51.704: completed task 21_M0
+INFO 2020-11-30 00:49:51.750: scheduling job: 27 recieved from ip: 127.0.0.1 port: 39440
+INFO 2020-11-30 00:49:51.979: received update from 1 at ip: 127.0.0.1 port: 40852
+SUCCESS_TASK 2020-11-30 00:49:51.979: completed task 17_M0
+SUCCESS_TASK 2020-11-30 00:49:51.980: completed task 23_M0
+INFO 2020-11-30 00:49:52.404: received update from 2 at ip: 127.0.0.1 port: 40854
+SUCCESS_TASK 2020-11-30 00:49:52.405: completed task 13_R1
+INFO 2020-11-30 00:49:52.473: scheduling job: 28 recieved from ip: 127.0.0.1 port: 39446
+INFO 2020-11-30 00:49:52.578: task 14_R0 from job 14 scheduled on 1
+INFO 2020-11-30 00:49:52.579: task 14_R1 from job 14 scheduled on 0
+INFO 2020-11-30 00:49:52.582: task 16_R0 from job 16 scheduled on 1
+INFO 2020-11-30 00:49:52.583: task 20_R0 from job 20 scheduled on 2
+INFO 2020-11-30 00:49:52.705: received update from 0 at ip: 127.0.0.1 port: 40866
+SUCCESS_TASK 2020-11-30 00:49:52.706: completed task 22_M2
+SUCCESS_TASK 2020-11-30 00:49:52.707: completed task 24_M1
+INFO 2020-11-30 00:49:52.981: received update from 1 at ip: 127.0.0.1 port: 40868
+SUCCESS_TASK 2020-11-30 00:49:52.981: completed task 19_M0
+SUCCESS_TASK 2020-11-30 00:49:52.982: completed task 13_R0
+SUCCESS_JOB 2020-11-30 00:49:52.982: job 13 completed
+INFO 2020-11-30 00:49:53.380: scheduling job: 29 recieved from ip: 127.0.0.1 port: 39460
+INFO 2020-11-30 00:49:53.410: received update from 2 at ip: 127.0.0.1 port: 40872
+SUCCESS_TASK 2020-11-30 00:49:53.411: completed task 24_M0
+SUCCESS_TASK 2020-11-30 00:49:53.411: completed task 24_M3
+INFO 2020-11-30 00:49:53.435: scheduling job: 30 recieved from ip: 127.0.0.1 port: 39464
+INFO 2020-11-30 00:49:53.586: task 20_R1 from job 20 scheduled on 0
+INFO 2020-11-30 00:49:53.587: task 15_R0 from job 15 scheduled on 1
+INFO 2020-11-30 00:49:53.588: task 15_R1 from job 15 scheduled on 2
+INFO 2020-11-30 00:49:53.589: task 18_R0 from job 18 scheduled on 0
+INFO 2020-11-30 00:49:53.592: task 26_M0 from job 26 scheduled on 1
+INFO 2020-11-30 00:49:53.593: task 26_M1 from job 26 scheduled on 2
+INFO 2020-11-30 00:49:53.718: received update from 0 at ip: 127.0.0.1 port: 40888
+SUCCESS_TASK 2020-11-30 00:49:53.719: completed task 25_M0
+INFO 2020-11-30 00:49:54.370: scheduling job: 31 recieved from ip: 127.0.0.1 port: 39480
+INFO 2020-11-30 00:49:54.409: received update from 2 at ip: 127.0.0.1 port: 40892
+SUCCESS_TASK 2020-11-30 00:49:54.410: completed task 20_R0
+INFO 2020-11-30 00:49:54.564: scheduling job: 32 recieved from ip: 127.0.0.1 port: 39484
+INFO 2020-11-30 00:49:54.596: task 26_M2 from job 26 scheduled on 0
+INFO 2020-11-30 00:49:54.596: task 26_M3 from job 26 scheduled on 2
+INFO 2020-11-30 00:49:54.636: scheduling job: 33 recieved from ip: 127.0.0.1 port: 39490
+INFO 2020-11-30 00:49:54.987: received update from 1 at ip: 127.0.0.1 port: 40902
+SUCCESS_TASK 2020-11-30 00:49:54.988: completed task 24_M2
+SUCCESS_TASK 2020-11-30 00:49:54.990: completed task 25_M1
+SUCCESS_TASK 2020-11-30 00:49:54.994: completed task 25_M3
+SUCCESS_TASK 2020-11-30 00:49:54.995: completed task 14_R0
+SUCCESS_TASK 2020-11-30 00:49:54.995: completed task 15_R0
+INFO 2020-11-30 00:49:55.411: received update from 2 at ip: 127.0.0.1 port: 40904
+SUCCESS_TASK 2020-11-30 00:49:55.411: completed task 15_R1
+SUCCESS_JOB 2020-11-30 00:49:55.412: job 15 completed
+INFO 2020-11-30 00:49:55.598: task 21_R0 from job 21 scheduled on 1
+INFO 2020-11-30 00:49:55.599: task 27_M0 from job 27 scheduled on 1
+INFO 2020-11-30 00:49:55.599: task 27_M1 from job 27 scheduled on 1
+INFO 2020-11-30 00:49:55.600: task 17_R0 from job 17 scheduled on 1
+INFO 2020-11-30 00:49:55.600: task 17_R1 from job 17 scheduled on 1
+INFO 2020-11-30 00:49:55.600: task 23_R0 from job 23 scheduled on 2
+INFO 2020-11-30 00:49:55.718: received update from 0 at ip: 127.0.0.1 port: 40914
+SUCCESS_TASK 2020-11-30 00:49:55.718: completed task 25_M2
+SUCCESS_TASK 2020-11-30 00:49:55.719: completed task 14_R1
+SUCCESS_JOB 2020-11-30 00:49:55.720: job 14 completed
+SUCCESS_TASK 2020-11-30 00:49:55.720: completed task 26_M2
+INFO 2020-11-30 00:49:55.993: received update from 1 at ip: 127.0.0.1 port: 40916
+SUCCESS_TASK 2020-11-30 00:49:55.993: completed task 26_M0
+INFO 2020-11-30 00:49:56.412: received update from 2 at ip: 127.0.0.1 port: 40918
+SUCCESS_TASK 2020-11-30 00:49:56.413: completed task 26_M1
+INFO 2020-11-30 00:49:56.602: task 28_M0 from job 28 scheduled on 0
+INFO 2020-11-30 00:49:56.603: task 28_M1 from job 28 scheduled on 0
+INFO 2020-11-30 00:49:56.603: task 22_R0 from job 22 scheduled on 0
+INFO 2020-11-30 00:49:56.604: task 22_R1 from job 22 scheduled on 1
+INFO 2020-11-30 00:49:56.605: task 19_R0 from job 19 scheduled on 2
+INFO 2020-11-30 00:49:56.721: received update from 0 at ip: 127.0.0.1 port: 40930
+SUCCESS_TASK 2020-11-30 00:49:56.722: completed task 20_R1
+SUCCESS_JOB 2020-11-30 00:49:56.723: job 20 completed
+SUCCESS_TASK 2020-11-30 00:49:56.723: completed task 18_R0
+SUCCESS_JOB 2020-11-30 00:49:56.724: job 18 completed
+INFO 2020-11-30 00:49:56.998: received update from 1 at ip: 127.0.0.1 port: 40932
+SUCCESS_TASK 2020-11-30 00:49:56.998: completed task 16_R0
+SUCCESS_JOB 2020-11-30 00:49:57.004: job 16 completed
+SUCCESS_TASK 2020-11-30 00:49:57.005: completed task 21_R0
+SUCCESS_JOB 2020-11-30 00:49:57.006: job 21 completed
+SUCCESS_TASK 2020-11-30 00:49:57.006: completed task 27_M0
+SUCCESS_TASK 2020-11-30 00:49:57.007: completed task 27_M1
+INFO 2020-11-30 00:49:57.606: task 19_R1 from job 19 scheduled on 1
+INFO 2020-11-30 00:49:57.607: task 29_M0 from job 29 scheduled on 1
+INFO 2020-11-30 00:49:57.608: task 29_M1 from job 29 scheduled on 0
+INFO 2020-11-30 00:49:57.608: task 30_M0 from job 30 scheduled on 1
+INFO 2020-11-30 00:49:57.609: task 30_M1 from job 30 scheduled on 0
+INFO 2020-11-30 00:49:57.610: task 31_M0 from job 31 scheduled on 1
+INFO 2020-11-30 00:49:57.623: scheduling job: 34 recieved from ip: 127.0.0.1 port: 39524
+INFO 2020-11-30 00:49:57.722: received update from 0 at ip: 127.0.0.1 port: 40944
+SUCCESS_TASK 2020-11-30 00:49:57.722: completed task 28_M0
+INFO 2020-11-30 00:49:58.417: received update from 2 at ip: 127.0.0.1 port: 40946
+SUCCESS_TASK 2020-11-30 00:49:58.418: completed task 26_M3
+SUCCESS_TASK 2020-11-30 00:49:58.418: completed task 23_R0
+SUCCESS_JOB 2020-11-30 00:49:58.419: job 23 completed
+INFO 2020-11-30 00:49:58.612: task 31_M1 from job 31 scheduled on 2
+INFO 2020-11-30 00:49:58.612: task 31_M2 from job 31 scheduled on 0
+INFO 2020-11-30 00:49:58.613: task 31_M3 from job 31 scheduled on 2
+INFO 2020-11-30 00:49:59.731: received update from 0 at ip: 127.0.0.1 port: 40962
+SUCCESS_TASK 2020-11-30 00:49:59.731: completed task 28_M1
+INFO 2020-11-30 00:50:00.016: received update from 1 at ip: 127.0.0.1 port: 40964
+SUCCESS_TASK 2020-11-30 00:50:00.016: completed task 17_R1
+SUCCESS_TASK 2020-11-30 00:50:00.017: completed task 22_R1
+INFO 2020-11-30 00:50:00.423: received update from 2 at ip: 127.0.0.1 port: 40966
+SUCCESS_TASK 2020-11-30 00:50:00.423: completed task 19_R0
+SUCCESS_TASK 2020-11-30 00:50:00.424: completed task 31_M3
+INFO 2020-11-30 00:50:00.616: task 32_M0 from job 32 scheduled on 1
+INFO 2020-11-30 00:50:00.616: task 32_M1 from job 32 scheduled on 2
+INFO 2020-11-30 00:50:00.617: task 32_M2 from job 32 scheduled on 0
+INFO 2020-11-30 00:50:00.618: task 32_M3 from job 32 scheduled on 1
+INFO 2020-11-30 00:50:00.619: task 33_M0 from job 33 scheduled on 2
+INFO 2020-11-30 00:50:00.730: received update from 0 at ip: 127.0.0.1 port: 40978
+SUCCESS_TASK 2020-11-30 00:50:00.731: completed task 22_R0
+SUCCESS_JOB 2020-11-30 00:50:00.734: job 22 completed
+SUCCESS_TASK 2020-11-30 00:50:00.735: completed task 29_M1
+SUCCESS_TASK 2020-11-30 00:50:00.738: completed task 30_M1
+INFO 2020-11-30 00:50:00.993: scheduling job: 35 recieved from ip: 127.0.0.1 port: 39570
+INFO 2020-11-30 00:50:01.008: received update from 1 at ip: 127.0.0.1 port: 40982
+SUCCESS_TASK 2020-11-30 00:50:01.009: completed task 17_R0
+SUCCESS_JOB 2020-11-30 00:50:01.009: job 17 completed
+INFO 2020-11-30 00:50:01.620: task 33_M1 from job 33 scheduled on 0
+INFO 2020-11-30 00:50:01.621: task 33_M2 from job 33 scheduled on 0
+INFO 2020-11-30 00:50:01.622: task 33_M3 from job 33 scheduled on 0
+INFO 2020-11-30 00:50:01.623: task 24_R0 from job 24 scheduled on 1
+INFO 2020-11-30 00:50:02.010: received update from 1 at ip: 127.0.0.1 port: 40992
+SUCCESS_TASK 2020-11-30 00:50:02.011: completed task 19_R1
+SUCCESS_JOB 2020-11-30 00:50:02.011: job 19 completed
+SUCCESS_TASK 2020-11-30 00:50:02.011: completed task 32_M0
+INFO 2020-11-30 00:50:02.626: task 25_R0 from job 25 scheduled on 1
+INFO 2020-11-30 00:50:02.626: task 27_R0 from job 27 scheduled on 1
+INFO 2020-11-30 00:50:02.647: scheduling job: 36 recieved from ip: 127.0.0.1 port: 39588
+INFO 2020-11-30 00:50:02.733: received update from 0 at ip: 127.0.0.1 port: 41000
+SUCCESS_TASK 2020-11-30 00:50:02.733: completed task 31_M2
+SUCCESS_TASK 2020-11-30 00:50:02.734: completed task 32_M2
+SUCCESS_TASK 2020-11-30 00:50:02.735: completed task 33_M3
+INFO 2020-11-30 00:50:03.017: scheduling job: 37 recieved from ip: 127.0.0.1 port: 39594
+INFO 2020-11-30 00:50:03.019: received update from 1 at ip: 127.0.0.1 port: 41002
+SUCCESS_TASK 2020-11-30 00:50:03.020: completed task 29_M0
+SUCCESS_TASK 2020-11-30 00:50:03.020: completed task 30_M0
+SUCCESS_TASK 2020-11-30 00:50:03.021: completed task 31_M0
+SUCCESS_TASK 2020-11-30 00:50:03.021: completed task 32_M3
+INFO 2020-11-30 00:50:03.130: scheduling job: 38 recieved from ip: 127.0.0.1 port: 39596
+INFO 2020-11-30 00:50:03.428: received update from 2 at ip: 127.0.0.1 port: 41008
+SUCCESS_TASK 2020-11-30 00:50:03.428: completed task 31_M1
+SUCCESS_TASK 2020-11-30 00:50:03.429: completed task 32_M1
+INFO 2020-11-30 00:50:03.628: task 34_M0 from job 34 scheduled on 1
+INFO 2020-11-30 00:50:03.629: task 26_R0 from job 26 scheduled on 0
+INFO 2020-11-30 00:50:03.630: task 28_R0 from job 28 scheduled on 1
+INFO 2020-11-30 00:50:03.630: task 35_M0 from job 35 scheduled on 0
+INFO 2020-11-30 00:50:03.631: task 35_M1 from job 35 scheduled on 1
+INFO 2020-11-30 00:50:03.633: task 36_M0 from job 36 scheduled on 2
+INFO 2020-11-30 00:50:03.633: task 36_M1 from job 36 scheduled on 0
+INFO 2020-11-30 00:50:03.634: task 37_M0 from job 37 scheduled on 1
+INFO 2020-11-30 00:50:03.634: task 37_M1 from job 37 scheduled on 2
+INFO 2020-11-30 00:50:03.736: received update from 0 at ip: 127.0.0.1 port: 41028
+SUCCESS_TASK 2020-11-30 00:50:03.737: completed task 33_M2
+INFO 2020-11-30 00:50:04.016: received update from 1 at ip: 127.0.0.1 port: 41030
+SUCCESS_TASK 2020-11-30 00:50:04.017: completed task 27_R0
+SUCCESS_JOB 2020-11-30 00:50:04.017: job 27 completed
+INFO 2020-11-30 00:50:04.288: scheduling job: 39 recieved from ip: 127.0.0.1 port: 39622
+INFO 2020-11-30 00:50:04.428: received update from 2 at ip: 127.0.0.1 port: 41034
+SUCCESS_TASK 2020-11-30 00:50:04.428: completed task 33_M0
+INFO 2020-11-30 00:50:04.638: task 37_M2 from job 37 scheduled on 0
+INFO 2020-11-30 00:50:04.639: task 37_M3 from job 37 scheduled on 1
+INFO 2020-11-30 00:50:04.640: task 29_R0 from job 29 scheduled on 2
+INFO 2020-11-30 00:50:04.745: received update from 0 at ip: 127.0.0.1 port: 41042
+SUCCESS_TASK 2020-11-30 00:50:04.745: completed task 26_R0
+SUCCESS_JOB 2020-11-30 00:50:04.746: job 26 completed
+INFO 2020-11-30 00:50:05.021: received update from 1 at ip: 127.0.0.1 port: 41044
+SUCCESS_TASK 2020-11-30 00:50:05.022: completed task 24_R0
+SUCCESS_JOB 2020-11-30 00:50:05.022: job 24 completed
+SUCCESS_TASK 2020-11-30 00:50:05.023: completed task 34_M0
+SUCCESS_TASK 2020-11-30 00:50:05.023: completed task 28_R0
+SUCCESS_JOB 2020-11-30 00:50:05.024: job 28 completed
+INFO 2020-11-30 00:50:05.430: received update from 2 at ip: 127.0.0.1 port: 41046
+SUCCESS_TASK 2020-11-30 00:50:05.431: completed task 36_M0
+INFO 2020-11-30 00:50:05.644: task 29_R1 from job 29 scheduled on 1
+INFO 2020-11-30 00:50:05.644: task 30_R0 from job 30 scheduled on 1
+INFO 2020-11-30 00:50:05.645: task 30_R1 from job 30 scheduled on 0
+INFO 2020-11-30 00:50:05.645: task 38_M0 from job 38 scheduled on 1
+INFO 2020-11-30 00:50:05.646: task 38_M1 from job 38 scheduled on 2
+INFO 2020-11-30 00:50:05.740: received update from 0 at ip: 127.0.0.1 port: 41058
+SUCCESS_TASK 2020-11-30 00:50:05.741: completed task 33_M1
+SUCCESS_TASK 2020-11-30 00:50:05.742: completed task 36_M1
+INFO 2020-11-30 00:50:06.648: task 38_M2 from job 38 scheduled on 0
+INFO 2020-11-30 00:50:06.649: task 31_R0 from job 31 scheduled on 0
+INFO 2020-11-30 00:50:06.742: received update from 0 at ip: 127.0.0.1 port: 41064
+SUCCESS_TASK 2020-11-30 00:50:06.743: completed task 30_R1
+INFO 2020-11-30 00:50:07.024: received update from 1 at ip: 127.0.0.1 port: 41066
+SUCCESS_TASK 2020-11-30 00:50:07.024: completed task 25_R0
+SUCCESS_JOB 2020-11-30 00:50:07.025: job 25 completed
+SUCCESS_TASK 2020-11-30 00:50:07.026: completed task 30_R0
+SUCCESS_JOB 2020-11-30 00:50:07.027: job 30 completed
+SUCCESS_TASK 2020-11-30 00:50:07.028: completed task 38_M0
+INFO 2020-11-30 00:50:07.433: received update from 2 at ip: 127.0.0.1 port: 41068
+SUCCESS_TASK 2020-11-30 00:50:07.434: completed task 37_M1
+SUCCESS_TASK 2020-11-30 00:50:07.435: completed task 29_R0
+SUCCESS_TASK 2020-11-30 00:50:07.435: completed task 38_M1
+INFO 2020-11-30 00:50:07.651: task 31_R1 from job 31 scheduled on 1
+INFO 2020-11-30 00:50:07.651: task 32_R0 from job 32 scheduled on 2
+INFO 2020-11-30 00:50:07.653: task 32_R1 from job 32 scheduled on 1
+INFO 2020-11-30 00:50:07.654: task 39_M0 from job 39 scheduled on 2
+INFO 2020-11-30 00:50:07.655: task 34_R0 from job 34 scheduled on 0
+INFO 2020-11-30 00:50:07.658: task 33_R0 from job 33 scheduled on 1
+INFO 2020-11-30 00:50:07.659: task 36_R0 from job 36 scheduled on 2
+INFO 2020-11-30 00:50:07.747: received update from 0 at ip: 127.0.0.1 port: 41084
+SUCCESS_TASK 2020-11-30 00:50:07.748: completed task 35_M0
+SUCCESS_TASK 2020-11-30 00:50:07.749: completed task 31_R0
+INFO 2020-11-30 00:50:08.027: received update from 1 at ip: 127.0.0.1 port: 41086
+SUCCESS_TASK 2020-11-30 00:50:08.027: completed task 35_M1
+SUCCESS_TASK 2020-11-30 00:50:08.028: completed task 37_M0
+INFO 2020-11-30 00:50:08.662: task 36_R1 from job 36 scheduled on 0
+INFO 2020-11-30 00:50:08.663: task 35_R0 from job 35 scheduled on 1
+INFO 2020-11-30 00:50:08.753: received update from 0 at ip: 127.0.0.1 port: 41092
+SUCCESS_TASK 2020-11-30 00:50:08.754: completed task 37_M2
+SUCCESS_TASK 2020-11-30 00:50:08.754: completed task 34_R0
+SUCCESS_JOB 2020-11-30 00:50:08.755: job 34 completed
+INFO 2020-11-30 00:50:09.030: received update from 1 at ip: 127.0.0.1 port: 41094
+SUCCESS_TASK 2020-11-30 00:50:09.031: completed task 37_M3
+SUCCESS_TASK 2020-11-30 00:50:09.031: completed task 31_R1
+SUCCESS_JOB 2020-11-30 00:50:09.033: job 31 completed
+INFO 2020-11-30 00:50:09.033: task 37_R0 from job 37 scheduled on 0
+INFO 2020-11-30 00:50:09.034: task 37_R1 from job 37 scheduled on 1
+INFO 2020-11-30 00:50:09.755: received update from 0 at ip: 127.0.0.1 port: 41100
+SUCCESS_TASK 2020-11-30 00:50:09.756: completed task 38_M2
+SUCCESS_TASK 2020-11-30 00:50:09.756: completed task 36_R1
+INFO 2020-11-30 00:50:09.758: task 38_R0 from job 38 scheduled on 0
+INFO 2020-11-30 00:50:10.032: received update from 1 at ip: 127.0.0.1 port: 41104
+SUCCESS_TASK 2020-11-30 00:50:10.033: completed task 29_R1
+SUCCESS_JOB 2020-11-30 00:50:10.033: job 29 completed
+SUCCESS_TASK 2020-11-30 00:50:10.034: completed task 32_R1
+INFO 2020-11-30 00:50:10.436: received update from 2 at ip: 127.0.0.1 port: 41106
+SUCCESS_TASK 2020-11-30 00:50:10.436: completed task 39_M0
+INFO 2020-11-30 00:50:10.437: task 39_R0 from job 39 scheduled on 1
+INFO 2020-11-30 00:50:10.437: task 39_R1 from job 39 scheduled on 0
+INFO 2020-11-30 00:50:11.758: received update from 0 at ip: 127.0.0.1 port: 41112
+SUCCESS_TASK 2020-11-30 00:50:11.759: completed task 37_R0
+SUCCESS_TASK 2020-11-30 00:50:11.759: completed task 38_R0
+SUCCESS_JOB 2020-11-30 00:50:11.760: job 38 completed
+SUCCESS_TASK 2020-11-30 00:50:11.760: completed task 39_R1
+INFO 2020-11-30 00:50:12.038: received update from 1 at ip: 127.0.0.1 port: 41116
+SUCCESS_TASK 2020-11-30 00:50:12.038: completed task 33_R0
+SUCCESS_JOB 2020-11-30 00:50:12.039: job 33 completed
+SUCCESS_TASK 2020-11-30 00:50:12.039: completed task 37_R1
+SUCCESS_JOB 2020-11-30 00:50:12.039: job 37 completed
+SUCCESS_TASK 2020-11-30 00:50:12.040: completed task 39_R0
+SUCCESS_JOB 2020-11-30 00:50:12.040: job 39 completed
+INFO 2020-11-30 00:50:12.442: received update from 2 at ip: 127.0.0.1 port: 41118
+SUCCESS_TASK 2020-11-30 00:50:12.443: completed task 32_R0
+SUCCESS_JOB 2020-11-30 00:50:12.443: job 32 completed
+SUCCESS_TASK 2020-11-30 00:50:12.443: completed task 36_R0
+SUCCESS_JOB 2020-11-30 00:50:12.444: job 36 completed
+INFO 2020-11-30 00:50:13.040: received update from 1 at ip: 127.0.0.1 port: 41120
+SUCCESS_TASK 2020-11-30 00:50:13.041: completed task 35_R0
+SUCCESS_JOB 2020-11-30 00:50:13.041: job 35 completed
+INFO 2020-11-30 00:50:29.992: shutting down listeners

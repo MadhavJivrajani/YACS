@@ -44,7 +44,7 @@ for key in data:
     print("\t Mean time of task completion: %.5f" % np.mean(task_times))
     print("\t Median time of task completion: %.5f" % np.median(task_times))
 
-color_list = ['red', 'blue', 'orange', 'green', 'black', 'brown']
+color_list = ['#4D0DD6', '#0BEF2A', '#085EFF', 'red', 'black', 'brown', 'purple']
 
 def plot_slots(key):
     timestamps = data[key]['master_data']['tasks']
@@ -69,25 +69,61 @@ def plot_slots(key):
             
     for index in range(num_workers):
         plt.plot(timestamp_list, plot_object[worker_ids[index]], color = color_list[index], label="Worker %s" % worker_ids[index])
-        plt.legend()
-        
-    plt.title("Slots occupied Plot for: %s" % key.upper())
-    plt.xlabel("Timestamp")
+        plt.legend(loc = 'upper left')
+
+    plt.title("Slots occupied Vs Time Elapsed: %s" % keys[key.upper()])
+    plt.xlabel("Time elapsed (seconds)")
     plt.ylabel("Slots occupied")
-    plt.savefig("%s.png"%key)
+    plt.grid(linestyle='dotted', color='black')
+    plt.savefig("%s_unequal_intervals.png"%key)
     plt.clf()
+
+def plot_slots_periodic(key):
+    timestamps = data[key]['master_data']['tasks']
+    num_timestamps = len(timestamps) - 1
+    
+    worker_ids = list(timestamps[0].keys())
+    num_workers = len(worker_ids)
+    
+    timestamp_list = [0]
+
+    plot_object = {}
+    for worker_id in worker_ids:
+        plot_object[worker_id] = [0]
+
+    start_time = dt.strptime(timestamps[1]['timestamp'], time_format)
+    last_time = start_time
+        
+    for timestamp in timestamps[1:]:
+        timestamp_obj = dt.strptime(timestamp['timestamp'], time_format)
+        time_diff = (timestamp_obj - last_time).total_seconds()
+
+        if time_diff < 0.5:
+            continue
+            
+        last_time = timestamp_obj
+        timestamp_list.append((timestamp_obj - start_time).total_seconds())
+        
+        for worker_id in worker_ids:
+            plot_object[worker_id].append(timestamp[worker_id])
+
+    plt.style.use('ggplot')
+            
+    for index in range(num_workers):
+        plt.plot(timestamp_list, plot_object[worker_ids[index]], color = color_list[index], label="Worker %s" % worker_ids[index], marker='o')
+        plt.legend(loc = 'upper left')
+        
+    plt.title("Slots occupied Vs Time Elapsed: %s" % keys[key.upper()])
+    plt.xlabel("Time elapsed (seconds)")
+    plt.ylabel("Slots occupied")
+    plt.grid(linestyle='dotted', color='black')
+    plt.savefig("%s_equal_intervals.png"%key)
+    plt.clf()
+
+plot_slots_periodic('ll')
+plot_slots_periodic('r')
+plot_slots_periodic('rr')
 
 plot_slots('ll')
 plot_slots('r')
 plot_slots('rr')
-
-
-
-
-
-
-
-
-
-
-

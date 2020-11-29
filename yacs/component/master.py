@@ -1,3 +1,4 @@
+import os
 import sys
 import json
 import threading
@@ -90,7 +91,7 @@ class Master:
 		# initialise the number of free slots for each 
 		# worker.
 		for worker_info in self.worker_config["workers"]:
-			worker_id = worker_info['worker_id']
+			worker_id = str(worker_info['worker_id'])
 			slots = worker_info["slots"]
 			port = worker_info["port"]
 			self.slots_free[worker_id] = slots
@@ -344,7 +345,9 @@ if __name__ == '__main__':
 		handler.setFormatter(formatter)
 		logger.addHandler(handler)
 
-		file_handler = logging.FileHandler("yacs.log")
+		log_path = os.getenv('YACS_LOGS_PATH', './')
+
+		file_handler = logging.FileHandler("%s/yacs.log" % log_path)
 		file_handler.setLevel(logging.DEBUG)
 		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s", "%Y-%m-%d %H:%M:%S")
 		file_handler.setFormatter(file_formatter)

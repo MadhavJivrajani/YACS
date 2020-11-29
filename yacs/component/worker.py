@@ -1,3 +1,4 @@
+import os
 import sys
 import socket
 import time
@@ -200,7 +201,9 @@ if __name__ == '__main__':
 		handler.setFormatter(formatter)
 		logger.addHandler(handler)
 
-		file_handler = logging.FileHandler("worker_%s.log" % worker_id)
+		log_path = os.getenv('YACS_LOGS_PATH', './')
+
+		file_handler = logging.FileHandler("%s/worker_%s.log" % (log_path, worker_id))
 		file_handler.setLevel(logging.DEBUG)
 		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s", "%Y-%m-%d %H:%M:%S")
 		file_handler.setFormatter(file_formatter)

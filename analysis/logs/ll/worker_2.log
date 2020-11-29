@@ -1,24 +1,66 @@
-INFO 2020-11-29 18:02:26.624: listener thread spawned successfully
-INFO 2020-11-29 18:02:26.624: task thread spawned successfully
-INFO 2020-11-29 18:02:26.625: update thread spawned successfully
-INFO 2020-11-29 18:02:33.924: task recieved: 4_M3 of job: 4
-INFO 2020-11-29 18:02:34.269: task recieved: 6_M0 of job: 6
-INFO 2020-11-29 18:02:34.331: task recieved: 7_M0 of job: 7
-SUCCESS_TASK 2020-11-29 18:02:37.637: task completed: 4_M3 of job: 4
-SUCCESS_TASK 2020-11-29 18:02:37.638: task completed: 6_M0 of job: 6
-SUCCESS_TASK 2020-11-29 18:02:37.639: task completed: 7_M0 of job: 7
-INFO 2020-11-29 18:02:37.647: task recieved: 7_R0 of job: 7
-INFO 2020-11-29 18:02:38.511: task recieved: 10_M2 of job: 10
-INFO 2020-11-29 18:02:38.713: task recieved: 6_R1 of job: 6
-SUCCESS_TASK 2020-11-29 18:02:40.644: task completed: 7_R0 of job: 7
-SUCCESS_TASK 2020-11-29 18:02:40.644: task completed: 10_M2 of job: 10
-SUCCESS_TASK 2020-11-29 18:02:43.649: task completed: 6_R1 of job: 6
-INFO 2020-11-29 18:02:44.087: task recieved: 14_M0 of job: 14
-INFO 2020-11-29 18:02:44.089: task recieved: 14_M3 of job: 14
-INFO 2020-11-29 18:02:44.293: task recieved: 15_M2 of job: 15
-SUCCESS_TASK 2020-11-29 18:02:46.653: task completed: 14_M3 of job: 14
-SUCCESS_TASK 2020-11-29 18:02:46.653: task completed: 15_M2 of job: 15
-SUCCESS_TASK 2020-11-29 18:02:48.656: task completed: 14_M0 of job: 14
-INFO 2020-11-29 18:02:48.663: task recieved: 14_R0 of job: 14
-SUCCESS_TASK 2020-11-29 18:02:51.660: task completed: 14_R0 of job: 14
-INFO 2020-11-29 18:03:10.459: shutting down worker
+INFO 2020-11-30 00:49:27.367: listener thread spawned successfully
+INFO 2020-11-30 00:49:27.368: task thread spawned successfully
+INFO 2020-11-30 00:49:27.369: update thread spawned successfully
+INFO 2020-11-30 00:49:34.849: task recieved: 4_M3 of job: 4
+INFO 2020-11-30 00:49:35.191: task recieved: 6_M0 of job: 6
+INFO 2020-11-30 00:49:35.252: task recieved: 7_M0 of job: 7
+SUCCESS_TASK 2020-11-30 00:49:38.378: task completed: 4_M3 of job: 4
+SUCCESS_TASK 2020-11-30 00:49:38.379: task completed: 6_M0 of job: 6
+SUCCESS_TASK 2020-11-30 00:49:38.379: task completed: 7_M0 of job: 7
+INFO 2020-11-30 00:49:38.384: task recieved: 7_R0 of job: 7
+INFO 2020-11-30 00:49:39.431: task recieved: 10_M1 of job: 10
+SUCCESS_TASK 2020-11-30 00:49:41.383: task completed: 7_R0 of job: 7
+SUCCESS_TASK 2020-11-30 00:49:43.386: task completed: 10_M1 of job: 10
+INFO 2020-11-30 00:49:44.758: task recieved: 13_M1 of job: 13
+INFO 2020-11-30 00:49:45.004: task recieved: 14_M3 of job: 14
+INFO 2020-11-30 00:49:45.208: task recieved: 15_M2 of job: 15
+SUCCESS_TASK 2020-11-30 00:49:46.390: task completed: 13_M1 of job: 13
+INFO 2020-11-30 00:49:47.212: task recieved: 12_R0 of job: 12
+SUCCESS_TASK 2020-11-30 00:49:47.393: task completed: 14_M3 of job: 14
+SUCCESS_TASK 2020-11-30 00:49:47.393: task completed: 15_M2 of job: 15
+INFO 2020-11-30 00:49:48.218: task recieved: 20_M0 of job: 20
+INFO 2020-11-30 00:49:48.547: task recieved: 22_M0 of job: 22
+SUCCESS_TASK 2020-11-30 00:49:49.395: task completed: 12_R0 of job: 12
+INFO 2020-11-30 00:49:49.555: task recieved: 13_R1 of job: 13
+SUCCESS_TASK 2020-11-30 00:49:50.398: task completed: 20_M0 of job: 20
+SUCCESS_TASK 2020-11-30 00:49:50.399: task completed: 22_M0 of job: 22
+INFO 2020-11-30 00:49:50.560: task recieved: 24_M0 of job: 24
+INFO 2020-11-30 00:49:50.565: task recieved: 24_M3 of job: 24
+SUCCESS_TASK 2020-11-30 00:49:52.402: task completed: 13_R1 of job: 13
+INFO 2020-11-30 00:49:52.586: task recieved: 20_R0 of job: 20
+SUCCESS_TASK 2020-11-30 00:49:53.404: task completed: 24_M0 of job: 24
+SUCCESS_TASK 2020-11-30 00:49:53.405: task completed: 24_M3 of job: 24
+INFO 2020-11-30 00:49:53.590: task recieved: 15_R1 of job: 15
+INFO 2020-11-30 00:49:53.596: task recieved: 26_M1 of job: 26
+SUCCESS_TASK 2020-11-30 00:49:54.407: task completed: 20_R0 of job: 20
+INFO 2020-11-30 00:49:54.600: task recieved: 26_M3 of job: 26
+SUCCESS_TASK 2020-11-30 00:49:55.408: task completed: 15_R1 of job: 15
+SUCCESS_TASK 2020-11-30 00:49:56.410: task completed: 26_M1 of job: 26
+INFO 2020-11-30 00:49:56.608: task recieved: 23_R0 of job: 23
+INFO 2020-11-30 00:49:57.628: task recieved: 19_R0 of job: 19
+SUCCESS_TASK 2020-11-30 00:49:58.414: task completed: 26_M3 of job: 26
+SUCCESS_TASK 2020-11-30 00:49:58.415: task completed: 23_R0 of job: 23
+INFO 2020-11-30 00:49:58.662: task recieved: 31_M1 of job: 31
+INFO 2020-11-30 00:49:58.663: task recieved: 31_M3 of job: 31
+SUCCESS_TASK 2020-11-30 00:50:00.418: task completed: 19_R0 of job: 19
+SUCCESS_TASK 2020-11-30 00:50:00.419: task completed: 31_M3 of job: 31
+INFO 2020-11-30 00:50:00.622: task recieved: 32_M1 of job: 32
+INFO 2020-11-30 00:50:00.626: task recieved: 33_M0 of job: 33
+SUCCESS_TASK 2020-11-30 00:50:03.423: task completed: 31_M1 of job: 31
+SUCCESS_TASK 2020-11-30 00:50:03.423: task completed: 32_M1 of job: 32
+INFO 2020-11-30 00:50:03.636: task recieved: 36_M0 of job: 36
+INFO 2020-11-30 00:50:03.639: task recieved: 37_M1 of job: 37
+SUCCESS_TASK 2020-11-30 00:50:04.426: task completed: 33_M0 of job: 33
+INFO 2020-11-30 00:50:04.643: task recieved: 29_R0 of job: 29
+SUCCESS_TASK 2020-11-30 00:50:05.428: task completed: 36_M0 of job: 36
+INFO 2020-11-30 00:50:05.649: task recieved: 38_M1 of job: 38
+SUCCESS_TASK 2020-11-30 00:50:07.430: task completed: 37_M1 of job: 37
+SUCCESS_TASK 2020-11-30 00:50:07.431: task completed: 29_R0 of job: 29
+SUCCESS_TASK 2020-11-30 00:50:07.432: task completed: 38_M1 of job: 38
+INFO 2020-11-30 00:50:07.654: task recieved: 32_R0 of job: 32
+INFO 2020-11-30 00:50:07.658: task recieved: 39_M0 of job: 39
+INFO 2020-11-30 00:50:07.668: task recieved: 36_R0 of job: 36
+SUCCESS_TASK 2020-11-30 00:50:10.436: task completed: 39_M0 of job: 39
+SUCCESS_TASK 2020-11-30 00:50:12.438: task completed: 32_R0 of job: 32
+SUCCESS_TASK 2020-11-30 00:50:12.439: task completed: 36_R0 of job: 36
+INFO 2020-11-30 00:50:36.156: shutting down worker
