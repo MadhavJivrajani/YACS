@@ -8,25 +8,20 @@ import logging
 from typing import List
 from queue import Queue
 
-sys.path.append("./")
-sys.path.append("../../")
-
 from yacs.component.listener import Listener
 from yacs.component.scheduler import Scheduler
-from yacs.utils.logger import CustomFormatter
-from yacs.utils.errors import *
+
+from yacs.component.utils.logger import CustomFormatter
+from yacs.component.utils.errors import *
 
 __all__ = ['Master']
 
 class Master:
 	"""Logic that implements a master node in the cluster. 
-
 	It handles the following:
-
 	* Listen for job requests (on port ``5000``)
 	* Listen for updates from workers (on port ``5001``)
 	* Perform scheduling of tasks based on the specifed policy
-
 	:param logger: instance of logger with custom formatting
 	:type logger: :py:class:`logging.RootLogger`
 	"""
@@ -73,7 +68,6 @@ class Master:
 		"""Return a list of available scheduling policies
 		
 		The following are available:
-
 		* LL: Least Loaded
 		* RR: Round Robin
 		* R : Random
@@ -84,9 +78,7 @@ class Master:
 		"""Read in config file for worker information and
 		set data structures realted to workers and initialise
 		the number of free ``slots`` per worker
-
 		For format of config file, please refer :ref:`dev`
-
 		:param path_to_config: path to config file on local system
 		:type path_to_config: `str`
 		"""
@@ -236,7 +228,6 @@ class Master:
 
 	def set_sched_policy(self, sched_policy: str = "LL") -> object:
 		"""Sets the scheduling policy for the ``Master``
-
 		:param sched_policy: scheduling policy to be configured for the ``Master``
 		:type sched_policy: `str`
 		"""
@@ -257,15 +248,12 @@ class Master:
 	def start(self) -> None:
 		"""Responsible for spawning threads and catching
 		signals for graceful termination.
-
 		Threads spawned:
-
 		* Listen to incoming job requests
 		* Listen to updates from workers
 		* Poll job queue
 		* Poll update queue
 		* Send tasks to workers to be executed
-
 		For more details refer :ref:`master`
 		"""
 		self.logger.info("scheduling policy set to %s" % self.sched_policy)

@@ -9,6 +9,7 @@ It stands for Yet Another Centralized Scheduler and provides 3 scheduling polici
 	:maxdepth: 2
 	:caption: Contents:
 
+	quickstart
 	api
 	dev
 

@@ -34,6 +34,6 @@ Worker
 Utils
 -----
 
-.. automodule:: yacs.utils.errors
+.. automodule:: yacs.component.utils.errors
    :members:
    :undoc-members:
