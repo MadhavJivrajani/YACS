@@ -70,7 +70,13 @@ docker pull aditiahuja/yacs_worker
 
 ## Design
 
-add diagram
+### Master
+
+![yacs_master](assets/yacs-master.png)
+
+### Worker
+
+![yacs_worker](assets/yacs-worker.png)
 
 ## Docs
 Docs for `yacs` can be found [here](https://yacs.readthedocs.io/en/latest/index.html)

@@ -56,4 +56,27 @@ Usage
 Docker
 ------
 
-Docker stuff
+Run the following commands to start YACS using Docker:
+
+::
+
+	cd docker
+	docker build -t master . # build image for master
+	docker build -t w1 -f worker_dockerfile . # build image for a worker
+
+The images can also be pulled from Dockerhub:
+
+* Name of master's docker image: ``aditiahuja/yacs_master``
+* Name of worker's docker image: ``aditiahuja/yacs_worker``
+* Pull the images by running:
+
+::
+
+	docker pull aditiahuja/yacs_master
+	docker pull aditiahuja/yacs_worker
+
+Running YACS:
+
+1. In the ``yacs/docker`` directory, run ``./start.sh <scheduling policy> <no. of workers>``. For eg. ``./start.sh LL 3``.
+2. Enter the ID and port for each worker and then the number of requests.
+3. To inspect the logs, run ``docker exec -it master bash -c "cat yacs.log"``. 
