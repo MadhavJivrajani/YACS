@@ -35,7 +35,6 @@ class Master:
 		self.sched_policy = "LL"
 
 		self.logger = logger
-		self.logger.info("scheduling policy set to %s" % self.sched_policy)
 		self.worker_config = dict()
 
 		# in case functionality for providing updates to clients is provided.
@@ -269,6 +268,7 @@ class Master:
 
 		For more details refer :ref:`master`
 		"""
+		self.logger.info("scheduling policy set to %s" % self.sched_policy)
 		try:
 			job_listener = self.__spawn(
 				self.__spawn_job_listener, args=(5000,))
