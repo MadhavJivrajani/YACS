@@ -72,11 +72,7 @@ docker pull aditiahuja/yacs_worker
 
 ### Master
 
-![yacs_master](assets/yacs-master-small.png)
-
-### Worker
-
-![yacs_worker](assets/yacs-worker-small.png)
+For the design of the system, please refer the [architecture](ARCHITECTURE.md) and the [dev docs](https://yacs.readthedocs.io/en/latest/dev.html)
 
 ## Docs
 Docs for `yacs` can be found [here](https://yacs.readthedocs.io/en/latest/index.html)
