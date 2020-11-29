@@ -38,7 +38,8 @@ class Random:
 					is_slot_free = False
 
 			if not is_slot_free:
-				break
+				time.sleep(1)
+				continue
 
 			# update relevant data structures
 			with self.master.scheduler_lock:
@@ -93,7 +94,8 @@ class RoundRobin:
 			# done to make sure that the lock is not held 
 			# during sleep
 			if not is_slot_free:
-				break
+				time.sleep(1)
+				continue
 
 			# update relevant data structures
 			with self.master.scheduler_lock:
