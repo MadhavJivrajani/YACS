@@ -8,21 +8,17 @@ import logging
 from typing import List
 from queue import Queue
 
-sys.path.append("./")
-sys.path.append("../../")
-
 from yacs.component.listener import Listener
 from yacs.component.scheduler import Scheduler
-from yacs.utils.logger import CustomFormatter
-from yacs.utils.errors import *
+
+from yacs.component.utils.logger import CustomFormatter
+from yacs.component.utils.errors import *
 
 __all__ = ['Master']
 
 class Master:
 	"""Logic that implements a master node in the cluster. 
-
 	It handles the following:
-
 	* Listen for job requests (on port ``5000``)
 	* Listen for updates from workers (on port ``5001``)
 	* Perform scheduling of tasks based on the specifed policy
@@ -73,7 +69,6 @@ class Master:
 		"""Return a list of available scheduling policies
 		
 		The following are available:
-
 		* LL: Least Loaded
 		* RR: Round Robin
 		* R : Random
@@ -84,9 +79,7 @@ class Master:
 		"""Read in config file for worker information and
 		set data structures realted to workers and initialise
 		the number of free ``slots`` per worker
-
 		For format of config file, please refer :ref:`dev`
-
 		:param path_to_config: path to config file on local system
 		:type path_to_config: `str`
 		"""
@@ -257,15 +250,12 @@ class Master:
 	def start(self) -> None:
 		"""Responsible for spawning threads and catching
 		signals for graceful termination.
-
 		Threads spawned:
-
 		* Listen to incoming job requests
 		* Listen to updates from workers
 		* Poll job queue
 		* Poll update queue
 		* Send tasks to workers to be executed
-
 		For more details refer :ref:`master`
 		"""
 		self.logger.info("scheduling policy set to %s" % self.sched_policy)
@@ -310,7 +300,9 @@ class Master:
 
 	# handle concurrent client connections
 	def __spawn_job_listener(self, port: int = 5000) -> None:
-		job_socket = socket.create_server((self.master_ip, port))
+		job_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		job_socket.bind((self.master_ip, port))
+
 		job_socket.listen(1)
 
 		while True:
@@ -323,7 +315,9 @@ class Master:
 
 	# handle concurrent update connections
 	def __spawn_update_listener(self, port: int = 5001) -> None:
-		update_socket = socket.create_server((self.master_ip, port))
+		update_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		update_socket.bind((self.master_ip, port))
+
 		update_socket.listen(1)
 
 		while True:
@@ -369,11 +363,11 @@ if __name__ == '__main__':
 				'success_job',
 				lambda message, *args: logger._log(logging.SUCCESSJOB, message, args))
 
-		m = Master(logger)\
+		master = Master(logger)\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)
 
-		m.start()
+		master.start()
 
 	except Exception as e:
 		logging.error(e)

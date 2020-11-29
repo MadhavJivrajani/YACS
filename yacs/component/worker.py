@@ -9,11 +9,8 @@ from copy import deepcopy
 from queue import Queue
 from threading import Thread, Lock
 
-sys.path.append("./")
-sys.path.append("../../")
-
-from yacs.utils.logger import CustomFormatter
-from yacs.utils.errors import *
+from yacs.component.utils.logger import CustomFormatter
+from yacs.component.utils.errors import *
 
 __all__ = ['Worker']
 

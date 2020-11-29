@@ -1,9 +1,10 @@
 *.pyc
-test.json
-test_master.py
-test_worker.py
 _build
 
 analysis/.ipynb_checkpoints
 analysis/data.json
 *.png
+
+*.egg-info
+dist
+build
