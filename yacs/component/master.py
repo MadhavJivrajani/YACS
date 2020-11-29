@@ -300,7 +300,9 @@ class Master:
 
 	# handle concurrent client connections
 	def __spawn_job_listener(self, port: int = 5000) -> None:
-		job_socket = socket.create_server((self.master_ip, port))
+		job_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		job_socket.bind((self.master_ip, port))
+
 		job_socket.listen(1)
 
 		while True:
@@ -313,7 +315,9 @@ class Master:
 
 	# handle concurrent update connections
 	def __spawn_update_listener(self, port: int = 5001) -> None:
-		update_socket = socket.create_server((self.master_ip, port))
+		update_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		update_socket.bind((self.master_ip, port))
+
 		update_socket.listen(1)
 
 		while True:
@@ -359,11 +363,11 @@ if __name__ == '__main__':
 				'success_job',
 				lambda message, *args: logger._log(logging.SUCCESSJOB, message, args))
 
-		m = Master(logger)\
+		master = Master(logger)\
 			.config(path_to_config=path)\
 			.set_sched_policy(sched_policy=sched_policy)
 
-		m.start()
+		master.start()
 
 	except Exception as e:
 		logging.error(e)

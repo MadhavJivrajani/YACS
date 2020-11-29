@@ -12,7 +12,7 @@ setuptools.setup(
 		'numpy',
 		'matplotlib',
 	],
-	python_requires='>=3.8',
+	python_requires='>=3.6',
 	entry_points = {
         'console_scripts': ['yacs=yacs.cli:main'],
     }

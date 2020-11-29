@@ -18,7 +18,7 @@ Git
 Dependencies and Requirements
 .............................
 
-* ``yacs`` runs on Python 3.8.x
+* ``yacs`` runs on Python 3.6.x
 * Installation can be done by running ``pip install .``
 * For help on running the CLI, run ``yacs --help``
 

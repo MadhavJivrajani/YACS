@@ -21,7 +21,7 @@ For more info on these, refer docs for the [scheduler](https://yacs.readthedocs.
 ### Installation from source
 
 Requirements
-- Python 3.8.x
+- Python 3.6.x
 
 ```
 git clone https://github.com/MadhavJivrajani/YACS.git
