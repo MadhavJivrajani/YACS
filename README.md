@@ -70,9 +70,7 @@ docker pull aditiahuja/yacs_worker
 
 ## Design
 
-### Master
-
-For the design of the system, please refer the [architecture](ARCHITECTURE.md) and the [dev docs](https://yacs.readthedocs.io/en/latest/dev.html)
+For the design of the system, please refer to the [architecture](ARCHITECTURE.md) and the [dev docs](https://yacs.readthedocs.io/en/latest/dev.html)
 
 ## Docs
 Docs for `yacs` can be found [here](https://yacs.readthedocs.io/en/latest/index.html)

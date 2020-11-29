@@ -3,8 +3,8 @@
 Dev Docs
 ^^^^^^^^
 
-Architecture
-============
+Design
+======
 
 Terminologies
 -------------
@@ -88,6 +88,8 @@ Implementation
 	1. When a new job request arrives at the ``Master``.
 	2. When a ``Worker`` sends an update on a task.
 
+For the architecture, please see :ref:`master_arch`.
+
 .. _worker:
 
 Worker
@@ -109,3 +111,5 @@ Implementation
 	1. Spawn a thread to listen for incoming tasks from the ``Master``
 	2. Spawn a thread to simulate execution of tasks on the ``Worker``
 	3. Spawn a thread to poll the completed queue. Items taken out of this queue are then part of the completion update sent to the master.
+
+For the architecture, please see :ref:`worker_arch`.
