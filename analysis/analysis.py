@@ -2,7 +2,6 @@ import json
 import numpy as np
 from datetime import datetime as dt
 import matplotlib.pyplot as plt
-from scipy.ndimage.filters import gaussian_filter1d
 
 data = {}
 keys = {
@@ -10,7 +9,7 @@ keys = {
     'R': 'Random',
     'LL': 'Least Loaded'
 }
-time_format = "%m/%d/%Y %H:%M:%S.%f"
+time_format = "%Y-%m-%d %H:%M:%S.%f"
 with open('data.json', 'r') as fp:
     data = json.load(fp)
 
@@ -69,8 +68,7 @@ def plot_slots(key):
             plot_object[worker_id].append(timestamp[worker_id])
             
     for index in range(num_workers):
-        ysmoothed = gaussian_filter1d(plot_object[worker_ids[index]], sigma=5)
-        plt.plot(timestamp_list, ysmoothed, color = color_list[index], label="Worker %s" % worker_ids[index])
+        plt.plot(timestamp_list, plot_object[worker_ids[index]], color = color_list[index], label="Worker %s" % worker_ids[index])
         plt.legend()
         
     plt.title("Slots occupied Plot for: %s" % key.upper())

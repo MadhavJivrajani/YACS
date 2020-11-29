@@ -346,7 +346,7 @@ if __name__ == '__main__':
 
 		file_handler = logging.FileHandler("yacs.log")
 		file_handler.setLevel(logging.DEBUG)
-		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s")
+		file_formatter = logging.Formatter("%(levelname)s %(asctime)s.%(msecs)03d: %(message)s", "%Y-%m-%d %H:%M:%S")
 		file_handler.setFormatter(file_formatter)
 		logger.addHandler(file_handler)
 
