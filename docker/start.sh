@@ -25,3 +25,5 @@ echo "Enter no. of requests:"
 read r
 
 docker exec -it master bash -c "python3 gen_requests.py $r"
+
+docker exec -it master bash -c "cat yacs.log"
