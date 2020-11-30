@@ -64,9 +64,10 @@ docker pull aditiahuja/yacs_worker
 ```      
 
 #### Running YACS
-1. In the `yacs/docker` directory, run `./start.sh <scheduling policy> <no. of workers>`. For eg. `./start.sh LL 3`.   
-2. Enter the ID and port for each worker and then the number of requests.
-3. To inspect the logs, run `docker exec -it master bash -c "cat yacs.log"`.      
+1. Change directory to `yacs/docker` and run `chmod +x start.sh`
+2. In the `yacs/docker` directory, run `./start.sh <scheduling policy> <no. of workers>`. For eg. `./start.sh LL 3`.   
+3. Enter the ID and port for each worker and then the number of requests.
+4. To inspect the logs, run `docker exec -it master bash -c "cat yacs.log"`.      
 
 ## Design
 
