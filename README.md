@@ -55,8 +55,8 @@ docker build -t w1 -f worker_dockerfile . # build image for a worker
 ```
 
 The images can also be pulled from Dockerhub
-- Name of master's docker image: `aditiahuja/yacs_master`
-- Name of worker's docker image: `aditiahuja/yacs_worker`
+- Name of master's docker image: [`aditiahuja/yacs_master`](https://hub.docker.com/repository/docker/aditiahuja/yacs_master)
+- Name of worker's docker image: [`aditiahuja/yacs_worker`](https://hub.docker.com/repository/docker/aditiahuja/yacs_worker)
 - Pull the images by running:
 ```
 docker pull aditiahuja/yacs_master
