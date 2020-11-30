@@ -1,3 +1,6 @@
+# Overall Architecture
+![yacs-overall](assets/yacs-overall.png)
+
 # Master
 ![yacs_master](assets/yacs-master.png)
 
