@@ -1,0 +1,80 @@
+interval:  0 
+ Job request : {'job_id': '0', 'map_tasks': [{'task_id': '0_M0', 'duration': 3}], 'reduce_tasks': [{'task_id': '0_R0', 'duration': 2}]}
+interval:  0.4692680899768591 
+ Job request : {'job_id': '1', 'map_tasks': [{'task_id': '1_M0', 'duration': 1}, {'task_id': '1_M1', 'duration': 1}], 'reduce_tasks': [{'task_id': '1_R0', 'duration': 4}]}
+interval:  3.010121430917521 
+ Job request : {'job_id': '2', 'map_tasks': [{'task_id': '2_M0', 'duration': 1}], 'reduce_tasks': [{'task_id': '2_R0', 'duration': 2}]}
+interval:  1.3167456935454493 
+ Job request : {'job_id': '3', 'map_tasks': [{'task_id': '3_M0', 'duration': 2}, {'task_id': '3_M1', 'duration': 4}], 'reduce_tasks': [{'task_id': '3_R0', 'duration': 2}]}
+interval:  0.9129425537759532 
+ Job request : {'job_id': '4', 'map_tasks': [{'task_id': '4_M0', 'duration': 1}, {'task_id': '4_M1', 'duration': 2}, {'task_id': '4_M2', 'duration': 4}, {'task_id': '4_M3', 'duration': 3}], 'reduce_tasks': [{'task_id': '4_R0', 'duration': 3}, {'task_id': '4_R1', 'duration': 2}]}
+interval:  0.16962487046234628 
+ Job request : {'job_id': '5', 'map_tasks': [{'task_id': '5_M0', 'duration': 1}, {'task_id': '5_M1', 'duration': 1}], 'reduce_tasks': [{'task_id': '5_R0', 'duration': 4}, {'task_id': '5_R1', 'duration': 1}]}
+interval:  0.16959629191460518 
+ Job request : {'job_id': '6', 'map_tasks': [{'task_id': '6_M0', 'duration': 3}, {'task_id': '6_M1', 'duration': 1}, {'task_id': '6_M2', 'duration': 4}], 'reduce_tasks': [{'task_id': '6_R0', 'duration': 1}, {'task_id': '6_R1', 'duration': 4}]}
+interval:  0.059838768608680676 
+ Job request : {'job_id': '7', 'map_tasks': [{'task_id': '7_M0', 'duration': 3}], 'reduce_tasks': [{'task_id': '7_R0', 'duration': 2}, {'task_id': '7_R1', 'duration': 1}]}
+interval:  2.0112308644799395 
+ Job request : {'job_id': '8', 'map_tasks': [{'task_id': '8_M0', 'duration': 3}], 'reduce_tasks': [{'task_id': '8_R0', 'duration': 1}]}
+interval:  0.9190821536272645 
+ Job request : {'job_id': '9', 'map_tasks': [{'task_id': '9_M0', 'duration': 4}, {'task_id': '9_M1', 'duration': 3}], 'reduce_tasks': [{'task_id': '9_R0', 'duration': 4}]}
+interval:  1.2312500617045903 
+ Job request : {'job_id': '10', 'map_tasks': [{'task_id': '10_M0', 'duration': 3}, {'task_id': '10_M1', 'duration': 3}, {'task_id': '10_M2', 'duration': 2}], 'reduce_tasks': [{'task_id': '10_R0', 'duration': 3}]}
+interval:  0.020799307999138622 
+ Job request : {'job_id': '11', 'map_tasks': [{'task_id': '11_M0', 'duration': 2}], 'reduce_tasks': [{'task_id': '11_R0', 'duration': 2}]}
+interval:  3.503557475158312 
+ Job request : {'job_id': '12', 'map_tasks': [{'task_id': '12_M0', 'duration': 3}, {'task_id': '12_M1', 'duration': 2}, {'task_id': '12_M2', 'duration': 3}, {'task_id': '12_M3', 'duration': 1}], 'reduce_tasks': [{'task_id': '12_R0', 'duration': 2}, {'task_id': '12_R1', 'duration': 1}]}
+interval:  1.786429543354675 
+ Job request : {'job_id': '13', 'map_tasks': [{'task_id': '13_M0', 'duration': 3}, {'task_id': '13_M1', 'duration': 1}, {'task_id': '13_M2', 'duration': 2}], 'reduce_tasks': [{'task_id': '13_R0', 'duration': 3}, {'task_id': '13_R1', 'duration': 2}]}
+interval:  0.238687625248947 
+ Job request : {'job_id': '14', 'map_tasks': [{'task_id': '14_M0', 'duration': 4}, {'task_id': '14_M1', 'duration': 2}, {'task_id': '14_M2', 'duration': 3}, {'task_id': '14_M3', 'duration': 2}], 'reduce_tasks': [{'task_id': '14_R0', 'duration': 2}, {'task_id': '14_R1', 'duration': 3}]}
+interval:  0.20067898874966336 
+ Job request : {'job_id': '15', 'map_tasks': [{'task_id': '15_M0', 'duration': 3}, {'task_id': '15_M1', 'duration': 2}, {'task_id': '15_M2', 'duration': 2}, {'task_id': '15_M3', 'duration': 4}], 'reduce_tasks': [{'task_id': '15_R0', 'duration': 1}, {'task_id': '15_R1', 'duration': 1}]}
+interval:  0.20261142283225705 
+ Job request : {'job_id': '16', 'map_tasks': [{'task_id': '16_M0', 'duration': 2}], 'reduce_tasks': [{'task_id': '16_R0', 'duration': 4}]}
+interval:  0.3627537294604771 
+ Job request : {'job_id': '17', 'map_tasks': [{'task_id': '17_M0', 'duration': 4}], 'reduce_tasks': [{'task_id': '17_R0', 'duration': 4}, {'task_id': '17_R1', 'duration': 3}]}
+interval:  0.7439278308608545 
+ Job request : {'job_id': '18', 'map_tasks': [{'task_id': '18_M0', 'duration': 3}], 'reduce_tasks': [{'task_id': '18_R0', 'duration': 3}]}
+interval:  0.5655370667803367 
+ Job request : {'job_id': '19', 'map_tasks': [{'task_id': '19_M0', 'duration': 4}], 'reduce_tasks': [{'task_id': '19_R0', 'duration': 2}, {'task_id': '19_R1', 'duration': 4}]}
+interval:  0.3442229925539415 
+ Job request : {'job_id': '20', 'map_tasks': [{'task_id': '20_M0', 'duration': 2}], 'reduce_tasks': [{'task_id': '20_R0', 'duration': 1}, {'task_id': '20_R1', 'duration': 3}]}
+interval:  0.9463708738997987 
+ Job request : {'job_id': '21', 'map_tasks': [{'task_id': '21_M0', 'duration': 3}, {'task_id': '21_M1', 'duration': 2}], 'reduce_tasks': [{'task_id': '21_R0', 'duration': 1}]}
+interval:  0.15023452872733867 
+ Job request : {'job_id': '22', 'map_tasks': [{'task_id': '22_M0', 'duration': 1}, {'task_id': '22_M1', 'duration': 1}, {'task_id': '22_M2', 'duration': 3}], 'reduce_tasks': [{'task_id': '22_R0', 'duration': 3}, {'task_id': '22_R1', 'duration': 2}]}
+interval:  0.34551551200240227 
+ Job request : {'job_id': '23', 'map_tasks': [{'task_id': '23_M0', 'duration': 1}], 'reduce_tasks': [{'task_id': '23_R0', 'duration': 1}]}
+interval:  0.45627721822084705 
+ Job request : {'job_id': '24', 'map_tasks': [{'task_id': '24_M0', 'duration': 2}, {'task_id': '24_M1', 'duration': 2}, {'task_id': '24_M2', 'duration': 4}, {'task_id': '24_M3', 'duration': 2}], 'reduce_tasks': [{'task_id': '24_R0', 'duration': 3}]}
+interval:  0.608934687859775 
+ Job request : {'job_id': '25', 'map_tasks': [{'task_id': '25_M0', 'duration': 2}, {'task_id': '25_M1', 'duration': 3}, {'task_id': '25_M2', 'duration': 4}, {'task_id': '25_M3', 'duration': 3}], 'reduce_tasks': [{'task_id': '25_R0', 'duration': 4}]}
+interval:  1.537936011030912 
+ Job request : {'job_id': '26', 'map_tasks': [{'task_id': '26_M0', 'duration': 2}, {'task_id': '26_M1', 'duration': 2}, {'task_id': '26_M2', 'duration': 1}, {'task_id': '26_M3', 'duration': 3}], 'reduce_tasks': [{'task_id': '26_R0', 'duration': 1}]}
+interval:  0.2227358621286903 
+ Job request : {'job_id': '27', 'map_tasks': [{'task_id': '27_M0', 'duration': 1}, {'task_id': '27_M1', 'duration': 1}], 'reduce_tasks': [{'task_id': '27_R0', 'duration': 1}]}
+interval:  0.7220291550331277 
+ Job request : {'job_id': '28', 'map_tasks': [{'task_id': '28_M0', 'duration': 1}, {'task_id': '28_M1', 'duration': 3}], 'reduce_tasks': [{'task_id': '28_R0', 'duration': 1}]}
+interval:  0.8975047213097606 
+ Job request : {'job_id': '29', 'map_tasks': [{'task_id': '29_M0', 'duration': 4}, {'task_id': '29_M1', 'duration': 2}], 'reduce_tasks': [{'task_id': '29_R0', 'duration': 2}, {'task_id': '29_R1', 'duration': 4}]}
+interval:  0.047563849756408545 
+ Job request : {'job_id': '30', 'map_tasks': [{'task_id': '30_M0', 'duration': 4}, {'task_id': '30_M1', 'duration': 2}], 'reduce_tasks': [{'task_id': '30_R0', 'duration': 1}, {'task_id': '30_R1', 'duration': 1}]}
+interval:  0.9353330206496101 
+ Job request : {'job_id': '31', 'map_tasks': [{'task_id': '31_M0', 'duration': 4}, {'task_id': '31_M1', 'duration': 4}, {'task_id': '31_M2', 'duration': 4}, {'task_id': '31_M3', 'duration': 1}], 'reduce_tasks': [{'task_id': '31_R0', 'duration': 1}, {'task_id': '31_R1', 'duration': 1}]}
+interval:  0.18696125197741642 
+ Job request : {'job_id': '32', 'map_tasks': [{'task_id': '32_M0', 'duration': 1}, {'task_id': '32_M1', 'duration': 2}, {'task_id': '32_M2', 'duration': 2}, {'task_id': '32_M3', 'duration': 2}], 'reduce_tasks': [{'task_id': '32_R0', 'duration': 4}, {'task_id': '32_R1', 'duration': 2}]}
+interval:  0.06726393087930424 
+ Job request : {'job_id': '33', 'map_tasks': [{'task_id': '33_M0', 'duration': 3}, {'task_id': '33_M1', 'duration': 4}, {'task_id': '33_M2', 'duration': 2}, {'task_id': '33_M3', 'duration': 1}], 'reduce_tasks': [{'task_id': '33_R0', 'duration': 4}]}
+interval:  2.973687793506931 
+ Job request : {'job_id': '34', 'map_tasks': [{'task_id': '34_M0', 'duration': 1}], 'reduce_tasks': [{'task_id': '34_R0', 'duration': 1}]}
+interval:  3.3706303424611725 
+ Job request : {'job_id': '35', 'map_tasks': [{'task_id': '35_M0', 'duration': 4}, {'task_id': '35_M1', 'duration': 4}], 'reduce_tasks': [{'task_id': '35_R0', 'duration': 4}]}
+interval:  1.6523315728128767 
+ Job request : {'job_id': '36', 'map_tasks': [{'task_id': '36_M0', 'duration': 1}, {'task_id': '36_M1', 'duration': 2}], 'reduce_tasks': [{'task_id': '36_R0', 'duration': 4}, {'task_id': '36_R1', 'duration': 1}]}
+interval:  0.3632878599687583 
+ Job request : {'job_id': '37', 'map_tasks': [{'task_id': '37_M0', 'duration': 4}, {'task_id': '37_M1', 'duration': 3}, {'task_id': '37_M2', 'duration': 4}, {'task_id': '37_M3', 'duration': 4}], 'reduce_tasks': [{'task_id': '37_R0', 'duration': 2}, {'task_id': '37_R1', 'duration': 2}]}
+interval:  0.10277731500250624 
+ Job request : {'job_id': '38', 'map_tasks': [{'task_id': '38_M0', 'duration': 1}, {'task_id': '38_M1', 'duration': 1}, {'task_id': '38_M2', 'duration': 3}], 'reduce_tasks': [{'task_id': '38_R0', 'duration': 1}]}
+interval:  1.1527507630986618 
+ Job request : {'job_id': '39', 'map_tasks': [{'task_id': '39_M0', 'duration': 2}], 'reduce_tasks': [{'task_id': '39_R0', 'duration': 1}, {'task_id': '39_R1', 'duration': 1}]}
