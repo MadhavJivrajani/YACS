@@ -1,6 +1,6 @@
 # Yet Another Centralized Scheduler (YACS)
 
-`yacs` is a tool built to simulated centralized scheduling polcies in a distributed setting as a project for the UE18CS322 course: Big Data, at PES University.  
+`yacs` is a tool built to simulate centralized scheduling polcies in a distributed setting as a project for the UE18CS322 course: Big Data, at PES University.  
 
 ## Components:
 `yacs` has 3 main components:  
@@ -76,7 +76,7 @@ For the design of the system, please refer to the [architecture](ARCHITECTURE.md
 ## Docs
 Docs for `yacs` can be found [here](https://yacs.readthedocs.io/en/latest/index.html)
 
-#### Logging
+## Logging
 By default the logs are stored in the directory in which the master / worker is run respectively, to specify a custom path, add an environment variable named `YACS_LOGS_PATH` to store the logs in this location.
 
 ## Future work
