@@ -76,6 +76,9 @@ For the design of the system, please refer to the [architecture](ARCHITECTURE.md
 ## Docs
 Docs for `yacs` can be found [here](https://yacs.readthedocs.io/en/latest/index.html)
 
+#### Logging
+By default the logs are stored in the directory in which the master / worker is run respectively, to specify a custom path, add an environment variable named `YACS_LOGS_PATH` to store the logs in this location.
+
 ## Future work
 - [ ] Add support for handling faults
 	- [ ] at `Master`
