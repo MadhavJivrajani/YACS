@@ -81,6 +81,7 @@ class Master:
 		set data structures realted to workers and initialise
 		the number of free ``slots`` per worker
 		For format of config file, please refer :ref:`dev`
+
 		:param path_to_config: path to config file on local system
 		:type path_to_config: `str`
 		"""
