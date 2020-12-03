@@ -253,6 +253,7 @@ class Master:
 		"""Responsible for spawning threads and catching
 		signals for graceful termination.
 		Threads spawned:
+
 		* Listen to incoming job requests
 		* Listen to updates from workers
 		* Poll job queue

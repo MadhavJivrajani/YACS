@@ -11,7 +11,7 @@ Overall Architecture
 .. image:: ../assets/yacs-overall.png
 	:alt: overall
 
-.. _master_arch:
+.. _worker_arch:
 
 Worker
 ======
@@ -19,10 +19,10 @@ Worker
 .. image:: ../assets/yacs-worker.png
     :alt: worker
 
+.. _master_arch:
+
 Master
 ======
 
 .. image:: ../assets/yacs-master.png
     :alt: master
-
-.. _worker_arch:
