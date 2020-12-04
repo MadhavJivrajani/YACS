@@ -1,6 +1,6 @@
 # Yet Another Centralized Scheduler (YACS)
 
-`yacs` is a tool built to simulate centralized scheduling polcies in a distributed setting as a project for the UE18CS322 course: Big Data, at PES University.  
+`yacs` is a tool built to simulate centralized scheduling policies in a distributed setting as a project for the UE18CS322 course: Big Data, at PES University.  
 
 ## Components:
 `yacs` has 3 main components:  
