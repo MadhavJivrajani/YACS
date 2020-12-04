@@ -178,7 +178,7 @@ class Scheduler:
 	:type master: :py:class:`Master`
 
 	:param policy: scheduling policy to use 
-	:type master: `str`
+	:type policy: `str`
 	"""
 	def __init__(self, master: object, policy: str = "LL") -> None:
 
