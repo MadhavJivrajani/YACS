@@ -20,6 +20,7 @@ __all__ = ['Master']
 class Master:
 	"""Logic that implements a master node in the cluster. 
 	It handles the following:
+
 	* Listen for job requests (on port ``5000``)
 	* Listen for updates from workers (on port ``5001``)
 	* Perform scheduling of tasks based on the specifed policy
