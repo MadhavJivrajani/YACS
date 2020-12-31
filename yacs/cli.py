@@ -23,30 +23,43 @@ def parse(args) -> None:
 def main() -> None:
 	yacs_parser = argparse.ArgumentParser(description='CLI for launching yacs entity')
 
-	yacs_parser.add_argument('Entity',
-						metavar='entity',
-						type=str,
-						help='type of entity to launch (master, worker)')
-	yacs_parser.add_argument('--config',
-						metavar='config',
-						type=str,
-						default="config.json",
-						help='path to config file')
-	yacs_parser.add_argument('--sched',
-						metavar='sched',
-						type=str,
-						default="LL",
-						help='scheduling policy (LL, RR, R)')
-	yacs_parser.add_argument('--port',
-						metavar='port',
-						type=int,
-						help='port for worker to run on according to config')
-	yacs_parser.add_argument('--id',
-						metavar='workerID',
-						type=str,
-						help='id for the worker according to the config')
-	
+	yacs_parser.add_argument(
+		'Entity',
+		metavar='entity',
+		type=str,
+		help='type of entity to launch (master, worker)'
+	)
 
+	yacs_parser.add_argument(
+		'--config',
+		metavar='config',
+		type=str,
+		default="config.json",
+		help='path to config file'
+	)
+
+	yacs_parser.add_argument(
+		'--sched',
+		metavar='sched',
+		type=str,
+		default="LL",
+		help='scheduling policy (LL, RR, R)'
+	)
+
+	yacs_parser.add_argument(
+		'--port',
+		metavar='port',
+		type=int,
+		help='port for worker to run on according to config'
+	)
+
+	yacs_parser.add_argument(
+		'--id',
+		metavar='workerID',
+		type=str,
+		help='id for the worker according to the config'
+	)
+	
 	args = yacs_parser.parse_args()
 
 	parse(args)

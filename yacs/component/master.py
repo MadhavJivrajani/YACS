@@ -362,12 +362,16 @@ if __name__ == '__main__':
 		logging.addLevelName(logging.SUCCESS, 'SUCCESS_TASK')
 		logging.addLevelName(logging.SUCCESSJOB, 'SUCCESS_JOB')
 
-		setattr(logger,
-				'success_task',
-				lambda message, *args: logger._log(logging.SUCCESS, message, args))
-		setattr(logger,
-				'success_job',
-				lambda message, *args: logger._log(logging.SUCCESSJOB, message, args))
+		setattr(
+			logger,
+			'success_task',
+			lambda message, *args: logger._log(logging.SUCCESS, message, args)
+		)
+		setattr(
+			logger,
+			'success_job',
+			lambda message, *args: logger._log(logging.SUCCESSJOB, message, args)
+		)
 
 		master = Master(logger)\
 			.config(path_to_config=path)\
