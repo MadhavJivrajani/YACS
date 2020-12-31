@@ -1,5 +1,7 @@
 # Yet Another Centralized Scheduler (YACS)
 
+[![Documentation Status](https://readthedocs.org/projects/yacs/badge/?version=latest)](https://yacs.readthedocs.io/en/latest/?badge=latest)
+
 `yacs` is a tool built to simulate centralized scheduling policies in a distributed setting as a project for the UE18CS322 course: Big Data, at PES University.  
 
 ## Components:

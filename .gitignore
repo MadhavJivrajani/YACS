@@ -8,3 +8,5 @@ analysis/*.png
 *.egg-info
 dist
 build
+
+*.pdf
